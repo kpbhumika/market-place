@@ -1,0 +1,22 @@
+{
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client",
+    "e2e"
+  ],
+  "scripts": {
+    "build:client": "yarn workspace market-place-client build",
+    "dev": "yarn workspace market-place-server dev",
+    "dev:debug": "yarn workspace market-place-server dev:debug",
+    "heroku-postbuild": "yarn workspace market-place-client build",
+    "start": "yarn workspace market-place-server start",
+    "dev:cypress": "yarn workspace market-place-server dev:e2e",
+    "e2e:open": "yarn workspace market-place-e2e e2e:open",
+    "e2e:run": "yarn workspace market-place-e2e e2e:run"
+  },
+  "engines": {
+    "node": "^16.18"
+  }
+}
