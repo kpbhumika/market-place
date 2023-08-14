@@ -20,19 +20,19 @@ class Category extends unique(Model) {
         };
     }
 
-    // static get relationMappings() {
-    //     const { Activity } = require("./index.js");
-    //     return {
-    //         activities: {
-    //             relation: Model.HasManyRelation,
-    //             modelClass: Activity,
-    //             join: {
-    //                 from: "categories.id",
-    //                 to: "activities.categoryId",
-    //             },
-    //         },
-    //     };
-    // }
+    static get relationMappings() {
+        const { Listing } = require("./index.js");
+        return {
+            listings: {
+                relation: Model.HasManyRelation,
+                modelClass: Listing,
+                join: {
+                    from: "categories.id",
+                    to: "listings.categoryId",
+                },
+            },
+        };
+    }
 }
 
 module.exports = Category;

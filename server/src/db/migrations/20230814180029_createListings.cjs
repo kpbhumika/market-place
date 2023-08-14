@@ -13,7 +13,7 @@ exports.up = async (knex) => {
         table.integer("price").notNullable()
         table.string("condition")
         table.bigInteger("categoryId").references("categories.id").index().unsigned().notNullable()
-        table.bigInteger("userId").references("users.id").index().unsigned().notNullable()
+        table.bigInteger("sellerId").references("users.id").index().unsigned().notNullable()
         table.timestamp("createdAt").defaultTo(knex.fn.now()).notNullable()
         table.timestamp("updatedAt").defaultTo(knex.fn.now()).notNullable()
     })

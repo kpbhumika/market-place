@@ -8,7 +8,7 @@ class Listing extends Model {
     static get jsonSchema() {
         return {
             type: "object",
-            required: ["title, description, price"],
+            required: ["title", "description", "price"],
             properties: {
                 title: { type: "string", minLength: 2 },
                 description: { type: "string", minLength: 2 },
@@ -17,27 +17,27 @@ class Listing extends Model {
         }
     }
 
-    // static get relationMappings() {
-    //     const { Category, Review} = require("./index.js")
-    //     return {
-    //         category: {
-    //             relation: Model.BelongsToOneRelation,
-    //             modelClass: Category,
-    //             join: {
-    //                 from: "activities.categoryId",
-    //                 to: "categories.id"
-    //             }
-    //         },
-    //         reviews: {
-    //             relation: Model.HasManyRelation,
-    //             modelClass: Review,
-    //             join: {
-    //                 from: "activities.id",
-    //                 to: "reviews.activityId"
-    //             }
-    //         }
-    //     }
-    // }
+    static get relationMappings() {
+        const { Category, User} = require("./index.js")
+        return {
+            category: {
+                relation: Model.BelongsToOneRelation,
+                modelClass: Category,
+                join: {
+                    from: "listings.categoryId",
+                    to: "categories.id"
+                }
+            },
+            user: {
+                relation: Model.BelongsToOneRelation,
+                modelClass: User,
+                join: {
+                    from: "listings.sellerId",
+                    to: "users.id"
+                }
+            }
+        }
+    }
 }
 
 module.exports = Listing
