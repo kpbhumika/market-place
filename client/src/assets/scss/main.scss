@@ -2,6 +2,11 @@
 @import "~foundation-sites/scss/foundation";
 @include foundation-everything;
 // place global css here
+body {
+  background: #232946;
+  color: #fffffe
+}
+
 *,
 *::before,
 *::after {
@@ -11,4 +16,31 @@
 :root {
   -moz-tab-size: 4;
   tab-size: 4;
+}
+
+
+.welcome-page {
+  text-align: center;
+  margin: 100px;
+  padding-top: 170px;
+}
+.user-name {
+  text-align: center;
+  margin: 90px
+}
+
+label {
+  color: #fffffe;
+}
+
+.user-listing {
+  padding: 50px;
+}
+
+.top-bar {
+  color: #232946;
+}
+
+ul {
+  list-style-type: none;
 }

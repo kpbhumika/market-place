@@ -4,6 +4,8 @@ import config from "../../config";
 
 const RegistrationForm = () => {
   const [userPayload, setUserPayload] = useState({
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     passwordConfirmation: "",
@@ -89,6 +91,20 @@ const RegistrationForm = () => {
     <div className="grid-container">
       <h1>Register</h1>
       <form onSubmit={onSubmit}>
+      <div>
+          <label>
+            First Name
+            <input type="text" name="firstName" value={userPayload.firstName} onChange={onInputChange} />
+            <FormError error={errors.firstName} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Last Name
+            <input type="text" name="lastName" value={userPayload.lastName} onChange={onInputChange} />
+            <FormError error={errors.lastName} />
+          </label>
+        </div>
         <div>
           <label>
             Email
