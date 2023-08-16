@@ -30,4 +30,21 @@ userListingRouter.post("/", async (req, res) => {
     }
 })
 
+userListingRouter.delete("/:id", async (req, res) => {
+    console.log(req.params.id)
+    try {
+        const listingToDelete = await Listing.query().findById(req.params.id)
+        if (listingToDelete.sellerId === req.user.id) {
+            await listingToDelete.$query().delete()
+        } else {
+            const errorMessage = `You are not authorized to delete this listing.`
+            const error = new Error(errorMessage)
+            throw error
+        }
+        return res.status(200).json({ listing: listingToDelete })
+    } catch (error) {
+        return res.status(500).json({ errors: error })
+    }
+})
+
 export default userListingRouter
