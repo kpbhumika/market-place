@@ -12,7 +12,7 @@ class ListingSeeder {
             {
                 title: "coffee table",
                 description: "Stylish Coffee Table: Elevate your living space with this modern coffee table. Crafted from sleek wood and metal, it seamlessly blends form and function. Its spacious surface offers ample room for beverages, books, or décor. The minimalist design complements various aesthetics. Upgrade your home with this versatile piece.",
-                price: 250,
+                price: "250",
                 condition: "used",
                 sellerId: thomas.id,
                 categoryId: furniture.id
@@ -20,21 +20,21 @@ class ListingSeeder {
             {
                 title: "women's pant",
                 description: "Athleta Women's Size S Gray Leggings Activewear",
-                price: 30,
+                price: "30",
                 sellerId: jane.id,
                 categoryId: clothes.id
             },
             {
                 title: "earphones",
                 description: "Apple Wired EarPods with Lightning Connector",
-                price: 20,
+                price: "20",
                 sellerId: bhumika.id,
                 categoryId: electronics.id
             },
             {
                 title: "monitor",
                 description: "27inch 4k LG Monitor",
-                price: 100,
+                price: "100",
                 sellerId: thomas.id,
                 categoryId: electronics.id
             }
