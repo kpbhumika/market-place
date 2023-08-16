@@ -44,3 +44,34 @@ label {
 ul {
   list-style-type: none;
 }
+
+a {
+  color: #232946;
+}
+
+.form {
+  margin: 20px ;
+  padding: 50px;
+}
+
+.button {
+  background-color: #eebbc3;
+  color: #232946;
+}
+
+.form-button {
+  display: flex;
+  gap: 10px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  color: #eebbc3
+}
+
+input[type=text] {
+  background-color: rgb(198, 198, 198);
+}
+
+select {
+  background-color: rgb(198, 198, 198);
+}

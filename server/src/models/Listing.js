@@ -12,7 +12,7 @@ class Listing extends Model {
             properties: {
                 title: { type: "string", minLength: 2 },
                 description: { type: "string", minLength: 2 },
-                price: { type: ["string", "integer"] }
+                price: { type: "string" }
             }
         }
     }

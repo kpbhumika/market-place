@@ -11,6 +11,9 @@ class CategorySeeder {
             },
             {
                 name: "Electronics"
+            },
+            {
+                name: "Other"
             }
         ]
 
