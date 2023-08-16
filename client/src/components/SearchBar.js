@@ -29,19 +29,22 @@ const SearchBar = () => {
     })
 
     return (
-        <div className="search-bar">
-            <input
-                className="search-input"
-                type="search"
-                placeholder="Search here"
-                onChange={handleChange}
-                value={searchInput}
-            />
-            <ul>
-                {searchInput && allListings}
-            </ul>
-
-        </div>
+        <>
+            <div className="search-bar">
+                <input
+                    className="search-input"
+                    type="search"
+                    placeholder="Search here"
+                    onChange={handleChange}
+                    value={searchInput}
+                />
+            </div>
+            <div className="filtered-list">
+                <ul>
+                    {searchInput && allListings}
+                </ul>
+            </div>
+        </>
     );
 
 };
