@@ -12,14 +12,20 @@ const UserListing = (props) => {
     }, [])
 
     const listings = userListings.map((listing) => {
-        return <UserListingTile listing={listing} />
+        return <UserListingTile
+            listing={listing}
+            userListings={userListings}
+            setUserListings={setUserListings}
+        />
     });
 
     return (
         <div className="user-listing">
-            <ul>
-                {listings}
-            </ul>
+            {userListings.length === 0 ? "You don't have any listings yet." : (
+                <ul>
+                    {listings}
+                </ul>
+            )}
         </div>
     )
 }
