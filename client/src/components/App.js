@@ -12,6 +12,7 @@ import AuthenticatedRoute from "./authentication/AuthenticatedRoute";
 import UserListing from "./UserListing";
 import CategoryList from "./CategoryList";
 import HomePage from "./HomePage";
+import SearchBar from "./SearchBar";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);

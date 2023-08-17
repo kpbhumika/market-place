@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar"
 const HomePage = ({currentUser}) => {
     return (
         <div>
-            <SearchBar/>
+            {currentUser && <SearchBar/>}
             <div className="user-name">
                 {currentUser && <h1>Hi {currentUser.firstName} !!</h1>}
             </div>
