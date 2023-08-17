@@ -21,7 +21,7 @@ userListingRouter.post("/", async (req, res) => {
     const { title, description, price, condition, categoryId } = newListing
     try {
         const addedListing = await Listing.query().insertAndFetch({ title, description, price, condition, categoryId, sellerId })
-        return res.status(201).json({listing: addedListing})
+        return res.status(201).json({ listing: addedListing })
     } catch (error) {
         if (error instanceof ValidationError) {
             return res.status(422).json({ errors: error.data })
@@ -31,7 +31,6 @@ userListingRouter.post("/", async (req, res) => {
 })
 
 userListingRouter.delete("/:id", async (req, res) => {
-    console.log(req.params.id)
     try {
         const listingToDelete = await Listing.query().findById(req.params.id)
         if (listingToDelete.sellerId === req.user.id) {

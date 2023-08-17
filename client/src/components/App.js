@@ -11,6 +11,9 @@ import TopBar from "./layout/TopBar";
 import AuthenticatedRoute from "./authentication/AuthenticatedRoute";
 import UserListing from "./UserListing";
 import CategoryList from "./CategoryList";
+import HomePage from "./HomePage";
+import SearchBar from "./SearchBar";
+import ShowListings from "./ShowListings";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -31,14 +34,13 @@ const App = (props) => {
     <Router>
       <TopBar user={currentUser} />
       <Switch>
-        <Route exact path="/">
-          <div className="user-name">
-            {currentUser && <h1>Hi {currentUser.firstName} !!</h1>}
-            </div>
-            <div className="welcome-page">
-            <h5 >Welcome to MarketMingle App – Your Destination for Discovery and Deals! Browse, buy, and sell a wide range of products and services. Start exploring, connecting, and discovering today!</h5>
-          </div>
-        </Route>
+        <Route
+          exact
+          path="/"
+          render={(routeProps) => (
+            <HomePage {...routeProps} currentUser={currentUser} />
+          )}
+        />
         <AuthenticatedRoute
           exact={true}
           path="/user/listings"
@@ -49,6 +51,12 @@ const App = (props) => {
           exact={true}
           path="/addListing"
           component={CategoryList}
+          user={currentUser}
+        />
+        <AuthenticatedRoute
+          exact={true}
+          path="/listings/:query"
+          component={ShowListings}
           user={currentUser}
         />
         <Route exact path="/users/new" component={RegistrationForm} />
