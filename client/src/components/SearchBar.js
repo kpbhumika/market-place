@@ -1,52 +1,34 @@
 import React, { useState, useEffect } from 'react'
-import getAllListings from '../apiClient/getAllListings';
-
+import { Redirect } from "react-router-dom";
 
 const SearchBar = () => {
 
-    const [searchInput, setSearchInput] = useState("");
-    const [listings, setListings] = useState([]);
+    const [query, setQuery] = useState("");
+    const [shouldRedirect, setShouldRedirect] = useState(false);
 
-    useEffect(() => {
-        getAllListings().then(fetchedListings => {
-            setListings(fetchedListings);
-        });
-    }, []);
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter'  && query) {
+          event.preventDefault();
+          setShouldRedirect(true)
+        }
+      };
 
-    const handleChange = (event) => {
-        event.preventDefault();
-        setSearchInput(event.target.value);
-    };
-
-    const filteredListings = listings.filter(listing => {
-        return listing.title.includes(searchInput);
-    });
-
-    const allListings = filteredListings.map((listing) => {
-        return (
-            <li key={listing.id}>{listing.title}</li>
-        )
-    })
+      if (shouldRedirect) {
+        return <Redirect push to={`/listings/${query}`} />
+    }
 
     return (
-        <>
             <div className="search-bar">
                 <input
                     className="search-input"
                     type="search"
                     placeholder="Search here"
-                    onChange={handleChange}
-                    value={searchInput}
+                    onChange={(event) => setQuery(event.target.value)}
+                    onKeyDown={handleKeyPress}
+                    value={query}
                 />
             </div>
-            <div className="filtered-list">
-                <ul>
-                    {searchInput && allListings}
-                </ul>
-            </div>
-        </>
     );
-
 };
 
 export default SearchBar

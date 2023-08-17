@@ -13,6 +13,7 @@ import UserListing from "./UserListing";
 import CategoryList from "./CategoryList";
 import HomePage from "./HomePage";
 import SearchBar from "./SearchBar";
+import ShowListings from "./ShowListings";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -50,6 +51,12 @@ const App = (props) => {
           exact={true}
           path="/addListing"
           component={CategoryList}
+          user={currentUser}
+        />
+        <AuthenticatedRoute
+          exact={true}
+          path="/listings/:query"
+          component={ShowListings}
           user={currentUser}
         />
         <Route exact path="/users/new" component={RegistrationForm} />
