@@ -1,5 +1,5 @@
 import express from "express"
-import { Category, Listing } from "../../../models/index.js"
+import { Listing } from "../../../models/index.js"
 import { ValidationError } from "objection"
 import cleanUserInput from "../../../services/cleanUserInput.js"
 
@@ -42,6 +42,19 @@ userListingRouter.delete("/:id", async (req, res) => {
         }
         return res.status(200).json({ listing: listingToDelete })
     } catch (error) {
+        return res.status(500).json({ errors: error })
+    }
+})
+
+userListingRouter.patch("/:id", async (req,res) =>{
+    const listingId = req.params.id
+    try {
+        const listing = await Listing.query().patchAndFetchById(listingId,{ sold : true })
+        return res.status(201).json({ listing })
+    } catch (error) {
+        if (error instanceof ValidationError) {
+            return res.status(422).json({ errors: error.data })
+        }
         return res.status(500).json({ errors: error })
     }
 })
