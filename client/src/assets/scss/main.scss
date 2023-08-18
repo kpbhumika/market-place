@@ -60,7 +60,7 @@ a {
   border-radius: 20px;
 }
 
-.form-button {
+.form-button, .user-listing-button {
   display: flex;
   gap: 10px;
 }
@@ -69,12 +69,12 @@ h1,h2,h3,h4,h5,h6 {
   color: #eebbc3
 }
 
-input[type=text], select {
+input[type=text], input[type=password], select {
   background-color: rgb(198, 198, 198);
   border-radius: 15px;
 }
 
-.delete {
+.delete, .sold {
   font-size: 12px;
   padding: 5px;
 }
@@ -102,9 +102,7 @@ form {
   color: #232946;
 }
 
-.filtered-list ul{
-  list-style: none;
-  padding: 0;
-  text-align: center;
+.filtered-listing {
+  padding: 50px;
 }
 
