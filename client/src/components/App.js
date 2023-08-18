@@ -10,10 +10,10 @@ import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
 import AuthenticatedRoute from "./authentication/AuthenticatedRoute";
 import UserListing from "./UserListing";
-import CategoryList from "./CategoryList";
 import HomePage from "./HomePage";
-import SearchBar from "./SearchBar";
 import ShowListings from "./ShowListings";
+import NewListingForm from "./NewListingForm";
+import ShowCategoryListings from "./ShowCategoryListings";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -50,13 +50,19 @@ const App = (props) => {
         <AuthenticatedRoute
           exact={true}
           path="/addListing"
-          component={CategoryList}
+          component={NewListingForm}
           user={currentUser}
         />
         <AuthenticatedRoute
           exact={true}
           path="/listings/:query"
           component={ShowListings}
+          user={currentUser}
+        />
+        <AuthenticatedRoute
+          exact={true}
+          path="/:category/listings"
+          component={ShowCategoryListings}
           user={currentUser}
         />
         <Route exact path="/users/new" component={RegistrationForm} />

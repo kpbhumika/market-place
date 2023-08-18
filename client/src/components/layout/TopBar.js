@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SignOutButton from "../authentication/SignOutButton";
+import CategoryListings from "../CategoryListings";
 
 const TopBar = ({ user }) => {
   const unauthenticatedListItems = [
@@ -33,6 +34,9 @@ const TopBar = ({ user }) => {
           </li>
           <li>
             <Link to={`/addListing`}>Add Listing</Link>
+          </li>
+          <li>
+            <CategoryListings />
           </li>
         </ul>
       </div>

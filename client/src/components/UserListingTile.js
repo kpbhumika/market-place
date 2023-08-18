@@ -19,7 +19,7 @@ const UserListingTile = ({ listing, userListings, setUserListings, setMarkAsSold
             <li>
                 <h4>{listing.title} - {listing.price}$</h4>
                 <p>{listing.description}</p>
-                {listing.condition && <p>Condition - {listing.condition}</p>}
+                {listing.condition && <p>Condition : {listing.condition}</p>}
                 {listing.sold && <p>( This item has been sold )</p>}
                 <div className="user-listing-button">
                 <button className="button delete" type="button" onClick={() => handleDelete(listing.id)}>Delete</button>
