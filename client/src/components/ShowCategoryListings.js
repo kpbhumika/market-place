@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import getCategoryListings from "../apiClient/getCategoryListings";
 import { useParams } from "react-router-dom";
 
-
 const ShowCategoryListings = (props) => {
     const { category } = useParams()
     const [categoryListings, setCategoryListings] = useState([])
@@ -31,7 +30,6 @@ const ShowCategoryListings = (props) => {
             <ul>
                 {filteredListings}
             </ul>
-
         </div>
 
     )
