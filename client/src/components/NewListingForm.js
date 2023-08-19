@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react"
 import ErrorList from "./layout/ErrorList";
 import translateServerErrors from "../services/translateServerErrors"
 import { Redirect } from "react-router-dom";
+import getCategories from "../apiClient/getCategories";
 
-const NewListingForm = ({ categoryList }) => {
+const NewListingForm = () => {
 
     const [shouldRedirect, setShouldRedirect] = useState(false);
     const [errors, setErrors] = useState([]);
+    const [categories, setCategories] = useState([])
     const [newListing, setNewListing] = useState({
         title: "",
         description: "",
@@ -14,6 +16,12 @@ const NewListingForm = ({ categoryList }) => {
         condition: "",
         categoryId: ""
     })
+
+    useEffect(() => {
+        getCategories().then(categories => {
+            setCategories(categories)
+        })
+    }, [])
 
     const postNewListing = async (newListing) => {
         try {
@@ -48,7 +56,7 @@ const NewListingForm = ({ categoryList }) => {
     }
 
 
-    const categoriesOptions = categoryList.map((category) => (
+    const categoriesOptions = categories.map((category) => (
         <option key={category.id} value={category.id}>
             {category.name}
         </option>
@@ -129,6 +137,7 @@ const NewListingForm = ({ categoryList }) => {
                 <label>
                     Category
                     <select
+                        className="form-dropdown"
                         name="category"
                         onChange={handleCategoryChange}
                         value={newListing.categoryId}>
@@ -142,7 +151,6 @@ const NewListingForm = ({ categoryList }) => {
                         Clear
                     </button>
                 </div>
-
             </form>
         </div>
     )

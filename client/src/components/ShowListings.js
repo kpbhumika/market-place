@@ -18,7 +18,7 @@ const ShowListings = (props) => {
             <li>
                 <h4>{listing.title} - {listing.price}$</h4>
                 <p>{listing.description}</p>
-                {listing.condition && <p>Condition - {listing.condition}</p>}
+                {listing.condition && <p>Condition : {listing.condition}</p>}
                 <br></br>
                 <br></br>
             </li>
