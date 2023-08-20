@@ -21,6 +21,7 @@ const UserListingTile = ({ listing, userListings, setUserListings, setMarkAsSold
                 <p>{listing.description}</p>
                 {listing.condition && <p>Condition : {listing.condition}</p>}
                 {listing.sold && <p>( This item has been sold )</p>}
+                <img src={listing.image} />
                 <div className="user-listing-button">
                 <button className="button delete" type="button" onClick={() => handleDelete(listing.id)}>Delete</button>
                 {!listing.sold && <button className="button sold" type="button" onClick={() => handleSold(listing.id)}>Mark as Sold</button>}
