@@ -8,7 +8,8 @@
   "name": "market-place-client",
   "version": "0.0.1",
   "engines": {
-    "node": "^16.18"
+    "node": "^16.18",
+    "yarn": "1.22.19"
   },
   "devDependencies": {
     "@hot-loader/react-dom": "~16.13",

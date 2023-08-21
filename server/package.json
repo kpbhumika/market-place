@@ -22,7 +22,8 @@
   "version": "0.0.1",
   "name": "market-place-server",
   "engines": {
-    "node": "^16.18"
+    "node": "^16.18",
+    "yarn": "1.22.19"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",
