@@ -14,6 +14,7 @@ exports.up = async (knex) => {
         table.string("condition")
         table.string("image")
         table.boolean("sold").defaultTo(false)
+        table.string("location").notNullable()
         table.bigInteger("categoryId").references("categories.id").index().unsigned().notNullable()
         table.bigInteger("sellerId").references("users.id").index().unsigned().notNullable()
         table.timestamp("createdAt").defaultTo(knex.fn.now()).notNullable()

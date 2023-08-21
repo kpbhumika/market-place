@@ -16,6 +16,7 @@ const NewListingForm = () => {
         description: "",
         price: "",
         condition: "",
+        location: "",
         categoryId: "",
         image: {}
     })
@@ -32,7 +33,6 @@ const NewListingForm = () => {
                 method: "POST",
                 headers: new Headers({
                     "Accept": "image/jpeg",
-                    // "Content-Type": "multipart/form-data"
                 }),
                 body: newListing
             })
@@ -54,6 +54,7 @@ const NewListingForm = () => {
             console.error("Error in fetch!", error.message);
         }
     };
+    console.log(newListing)
 
     if (shouldRedirect) {
         return <Redirect push to="/user/listings" />;
@@ -86,10 +87,11 @@ const NewListingForm = () => {
         newListingBody.append("description", newListing.description)
         newListingBody.append("price", newListing.price)
         newListingBody.append("condition", newListing.condition)
+        newListingBody.append("location", newListing.location)
         newListingBody.append("categoryId", newListing.categoryId)
         newListingBody.append("image", newListing.image)
         postNewListing(newListingBody)
-        // clearForm(event)
+        clearForm(event)
     }
 
     const handleCategoryChange = (event) => {
@@ -106,6 +108,7 @@ const NewListingForm = () => {
             description: "",
             price: "",
             condition: "",
+            location: "",
             categoryId: "",
             image: {}
         })
@@ -150,6 +153,15 @@ const NewListingForm = () => {
                         name="condition"
                         onChange={handleInputChange}
                         value={newListing.condition}
+                    />
+                </label>
+                <label>
+                    City
+                    <input
+                        type="text"
+                        name="location"
+                        onChange={handleInputChange}
+                        value={newListing.location}
                     />
                 </label>
                 <label>

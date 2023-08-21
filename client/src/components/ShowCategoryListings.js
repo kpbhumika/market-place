@@ -18,6 +18,7 @@ const ShowCategoryListings = (props) => {
                 <h4>{listing.title} - {listing.price}$</h4>
                 <p>{listing.description}</p>
                 {listing.condition && <p>Condition : {listing.condition}</p>}
+                Location : {listing.location}
                 <br></br>
                 <br></br>
             </li>

@@ -22,7 +22,7 @@ const SearchBar = () => {
                 <input
                     className="search-input"
                     type="search"
-                    placeholder="Search here"
+                    placeholder="Search products, location"
                     onChange={(event) => setQuery(event.target.value)}
                     onKeyDown={handleKeyPress}
                     value={query}
