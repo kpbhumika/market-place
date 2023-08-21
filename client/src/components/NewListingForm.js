@@ -70,7 +70,6 @@ const NewListingForm = () => {
             ...newListing,
             [event.currentTarget.name]: event.currentTarget.value
         })
-        console.log(newListing)
     }
 
     const handleImageUpload = (acceptedImage) => {
@@ -79,7 +78,6 @@ const NewListingForm = () => {
           image: acceptedImage[0]
         })
       }
-      console.log(newListing)
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -90,8 +88,8 @@ const NewListingForm = () => {
         newListingBody.append("condition", newListing.condition)
         newListingBody.append("categoryId", newListing.categoryId)
         newListingBody.append("image", newListing.image)
-        postNewListing({ ...newListingBody })
-        clearForm(event)
+        postNewListing(newListingBody)
+        // clearForm(event)
     }
 
     const handleCategoryChange = (event) => {

@@ -4,7 +4,6 @@ import multerS3 from "multer-s3"
 
 import {config}  from "../config.js"
 
-console.log(config,"config")
 AWS.config.update({
   accessKeyId: config.awsAccess.key,
   secretAccessKey: config.awsSecret.key,
