@@ -1,6 +1,7 @@
 @import "./foundation/settings";
 @import "~foundation-sites/scss/foundation";
 @include foundation-everything;
+
 // place global css here
 body {
   background: #232946;
@@ -23,6 +24,7 @@ body {
   margin: 100px;
   padding-top: 90px;
 }
+
 .user-name {
   text-align: center;
   margin: 50px
@@ -49,7 +51,7 @@ a {
 }
 
 .listing-form {
-  margin: 20px ;
+  margin: 20px;
   padding: 10px;
 }
 
@@ -59,26 +61,36 @@ a {
   border-radius: 20px;
 }
 
-.form-button, .user-listing-button {
+.form-button,
+.user-listing-button {
   display: flex;
   gap: 10px;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #eebbc3
 }
 
-input[type=text], input[type=password], .form-dropdown {
+input[type=text],
+input[type=password],
+.form-dropdown {
   background-color: rgb(198, 198, 198);
   border-radius: 15px;
 }
 
-.delete, .sold {
+.delete,
+.sold {
   font-size: 12px;
   padding: 5px;
-  flex:1;
+  flex: 1;
   max-width: 90px;
   height: 25px;
+  margin: 10px;
 }
 
 form {
@@ -104,12 +116,12 @@ form {
   color: #232946;
 }
 
-.filtered-listing, .category-listings {
+.filtered-listing,
+.category-listings {
   padding: 20px;
 }
 
 img {
-  max-width: 100%;
-  height: auto;
+  max-width: 150px;
+  max-height: 150px;
 }
-

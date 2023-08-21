@@ -5,6 +5,7 @@ import clientRouter from "./clientRouter.js";
 import userListingRouter from "./api/v1/userListingrouter.js";
 import categoryRouter from "./api/v1/categoryRouter.js";
 import listingsRouter from "./api/v1/listingsRouter.js";
+import openaiRouter from "./api/v1/openaiRouter.js";
 
 const rootRouter = new express.Router();
 rootRouter.use("/", clientRouter);
@@ -13,6 +14,7 @@ rootRouter.use("/api/v1/users", usersRouter);
 rootRouter.use("/api/v1/userListings", userListingRouter)
 rootRouter.use("/api/v1/categories", categoryRouter)
 rootRouter.use("/api/v1/listings", listingsRouter)
+rootRouter.use("/api/v1/openAI", openaiRouter)
 
 
 export default rootRouter;
