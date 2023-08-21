@@ -18,8 +18,8 @@ const ShowCategoryListings = (props) => {
                 <h4>{listing.title} - {listing.price}$</h4>
                 <p>{listing.description}</p>
                 {listing.condition && <p>Condition : {listing.condition}</p>}
-                Location : {listing.location}
-                <br></br>
+                <p>Location : {listing.location}</p>
+                {listing.image && <img src={listing.image} />}
                 <br></br>
             </li>
         )
@@ -27,7 +27,7 @@ const ShowCategoryListings = (props) => {
 
     return (
         <div className="category-listings">
-            <h3>Listings under {category}: </h3>
+            <h3>Listings under {category}: </h3><br></br>
             <ul>
                 {filteredListings}
             </ul>

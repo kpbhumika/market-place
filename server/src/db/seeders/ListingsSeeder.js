@@ -19,6 +19,16 @@ class ListingSeeder {
                 categoryId: furniture.id
             },
             {
+                title: "standind desk",
+                description: "Daiah Ergonomic Curved Height Adjustable Standing Desk",
+                price: "150",
+                condition: "used",
+                location: "Boston",
+                image: "https://market-place-development.s3.amazonaws.com/1692651324357",
+                sellerId: thomas.id,
+                categoryId: furniture.id
+            },
+            {
                 title: "women's pant",
                 description: "Athleta Women's Size S Gray Leggings Activewear",
                 price: "30",
