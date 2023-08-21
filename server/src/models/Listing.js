@@ -13,7 +13,8 @@ class Listing extends Model {
                 title: { type: "string", minLength: 2 },
                 description: { type: "string", minLength: 2 },
                 price: { type: "string" },
-                sold: { type: ["boolean", "string"] }
+                sold: { type: ["boolean", "string"] },
+                image: { type: "string" },
             }
         }
     }

@@ -19,12 +19,13 @@ const production = {
   s3Bucket: { name: process.env.S3_BUCKET_PRODUCTION }
 }
 
-const config = { development, test, production }
+const tempconfig = { development, test, production }
+export const config = tempconfig[getNodeEnv()]
 
 export default {
-  config: config[getNodeEnv()],
   nodeEnv: getNodeEnv(),
   session: { secret: process.env.SESSION_SECRET },
   databaseUrl: getDatabaseUrl(getNodeEnv()),
   web: { host: process.env.HOST || "0.0.0.0", port: process.env.PORT || 3000 }
 };
+

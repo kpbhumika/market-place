@@ -2,8 +2,11 @@ import express from "express"
 import { Listing } from "../../../models/index.js"
 import { ValidationError } from "objection"
 import cleanUserInput from "../../../services/cleanUserInput.js"
+import uploadImage from "../../../services/uploadImage.js"
+import multer from "multer"
 
 const userListingRouter = new express.Router()
+const uploadMiddleware = uploadImage.single("image")
 
 userListingRouter.get("/", async (req, res) => {
     const sellerId = req.user.id
@@ -15,12 +18,13 @@ userListingRouter.get("/", async (req, res) => {
     }
 })
 
-userListingRouter.post("/", async (req, res) => {
+userListingRouter.post("/",uploadImage.single("image"), async (req, res) => {
     const sellerId = req.user.id
     const newListing = cleanUserInput(req.body)
+    const image = req.file.location
     const { title, description, price, condition, categoryId } = newListing
     try {
-        const addedListing = await Listing.query().insertAndFetch({ title, description, price, condition, categoryId, sellerId })
+        const addedListing = await Listing.query().insertAndFetch({ title, description, price, condition, categoryId, sellerId, image })
         return res.status(201).json({ listing: addedListing })
     } catch (error) {
         if (error instanceof ValidationError) {

@@ -3,6 +3,8 @@ import ErrorList from "./layout/ErrorList";
 import translateServerErrors from "../services/translateServerErrors"
 import { Redirect } from "react-router-dom";
 import getCategories from "../apiClient/getCategories";
+import Dropzone from "react-dropzone"
+
 
 const NewListingForm = () => {
 
@@ -14,7 +16,8 @@ const NewListingForm = () => {
         description: "",
         price: "",
         condition: "",
-        categoryId: ""
+        categoryId: "",
+        image: {}
     })
 
     useEffect(() => {
@@ -28,9 +31,10 @@ const NewListingForm = () => {
             const response = await fetch(`/api/v1/userListings`, {
                 method: "POST",
                 headers: new Headers({
-                    "Content-Type": "application/json"
+                    "Accept": "image/jpeg",
+                    // "Content-Type": "multipart/form-data"
                 }),
-                body: JSON.stringify(newListing),
+                body: newListing
             })
             if (!response.ok) {
                 if (response.status === 422) {
@@ -55,7 +59,6 @@ const NewListingForm = () => {
         return <Redirect push to="/user/listings" />;
     }
 
-
     const categoriesOptions = categories.map((category) => (
         <option key={category.id} value={category.id}>
             {category.name}
@@ -69,10 +72,24 @@ const NewListingForm = () => {
         })
     }
 
+    const handleImageUpload = (acceptedImage) => {
+        setNewListing({
+          ...newListing,
+          image: acceptedImage[0]
+        })
+      }
+
     const handleSubmit = (event) => {
         event.preventDefault()
-        postNewListing({ ...newListing })
-        clearForm(event)
+        const newListingBody = new FormData()
+        newListingBody.append("title", newListing.title)
+        newListingBody.append("description", newListing.description)
+        newListingBody.append("price", newListing.price)
+        newListingBody.append("condition", newListing.condition)
+        newListingBody.append("categoryId", newListing.categoryId)
+        newListingBody.append("image", newListing.image)
+        postNewListing(newListingBody)
+        // clearForm(event)
     }
 
     const handleCategoryChange = (event) => {
@@ -89,12 +106,13 @@ const NewListingForm = () => {
             description: "",
             price: "",
             condition: "",
-            categoryId: ""
+            categoryId: "",
+            image: {}
         })
     }
 
     return (
-        <div className="form">
+        <div className="listing-form">
             <ErrorList errors={errors} />
             <h4> Add new listing </h4>
             <form onSubmit={handleSubmit}>
@@ -145,6 +163,16 @@ const NewListingForm = () => {
                         {categoriesOptions}
                     </select>
                 </label>
+                <Dropzone onDrop={handleImageUpload}>
+                    {({ getRootProps, getInputProps }) => (
+                        <section>
+                            <div {...getRootProps()}>
+                                <input {...getInputProps()} />
+                                <p>Upload images - drag 'n' drop or click on this to upload</p>
+                            </div>
+                        </section>
+                    )}
+                </Dropzone>
                 <div className="form-button">
                     <input className="button" type="submit" value="Submit" />
                     <button className="button" type="button" onClick={clearForm}>
