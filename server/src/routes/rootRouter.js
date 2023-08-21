@@ -2,7 +2,7 @@ import express from "express";
 import userSessionsRouter from "./api/v1/userSessionsRouter.js";
 import usersRouter from "./api/v1/usersRouter.js";
 import clientRouter from "./clientRouter.js";
-import userListingRouter from "./api/v1/userListingrouter.js";
+import userListingRouter from "./api/v1/userListingRouter.js";
 import categoryRouter from "./api/v1/categoryRouter.js";
 import listingsRouter from "./api/v1/listingsRouter.js";
 
