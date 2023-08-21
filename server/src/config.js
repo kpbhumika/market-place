@@ -13,9 +13,8 @@ const development = {
   nodeEnv: getNodeEnv(),
   session: { secret: process.env.SESSION_SECRET },
   web: { host: process.env.HOST || "0.0.0.0", port: process.env.PORT || 3000 },
-  openaiOrganization: "org-LZGOFnb8mEb9561Wh0HqQfO3",
+  openaiOrganization: "org-35axyBkP6BmSvKh6UOhFR7rx",
   openaiApiKey: process.env.OPENAI_API_KEY,
-
 }
 
 const test = { ...development }

@@ -15,7 +15,8 @@ openaiRouter.get("/", async (req, res) => {
             model: "gpt-3.5-turbo",
             messages: [{"role": "user", "content": "Hello!"}],
           });
-        return res.send("success")
+    console.log("open ai response", chatCompletion)
+    return res.send("success")
     } catch (error) {
         return res.status(500).json({ errors: error })
     }
