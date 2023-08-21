@@ -33,6 +33,7 @@ userListingRouter.post("/", uploadImage.single("image"), async (req, res) => {
         if (error instanceof ValidationError) {
             return res.status(422).json({ errors: error.data })
         }
+        console.log("Error in userListingRouter", error)
         return res.status(500).json({ errors: error })
     }
 })
