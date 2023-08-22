@@ -7,7 +7,7 @@ listingsRouter.get("/", async (req, res) => {
     const sellerId = req.user.id
     const query = req.query.title
     try {
-        const listings = await Listing.query().whereNot('sellerId', sellerId)
+        const listings = await Listing.query().whereNot('sellerId', sellerId).andWhere('sold', false)
             .andWhere(function () {
                 this.where('title', 'ilike', `%${query}%`)
                     .orWhere('location', 'ilike', `%${query}%`);

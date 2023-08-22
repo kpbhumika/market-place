@@ -56,7 +56,6 @@ const NewListingForm = () => {
             console.error("Error in fetch!", error.message);
         }
     };
-    console.log(newListing)
 
     if (shouldRedirect) {
         return <Redirect push to="/user/listings" />;

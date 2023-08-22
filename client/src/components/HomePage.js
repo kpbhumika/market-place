@@ -13,14 +13,14 @@ const HomePage = ({ currentUser }) => {
         })
     }, [])
 
-    console.log("images", images)
     const featuredImages = images.map((image) => {
-        return (
-            <li>
-                {image.image && <img src={image.image} />}
-            </li>
-        )
-
+        if (image.image) {
+            return (
+              <li className="column" key={image.id}>
+                <img src={image.image} alt="Featured" />
+              </li>
+            );
+          }
     })
 
     return (
@@ -33,7 +33,7 @@ const HomePage = ({ currentUser }) => {
                 {currentUser && <h1>Hi {currentUser.firstName} !!</h1>}
             </div>
             <div className="featured-images">
-                <ul>
+                <ul className="row">
                     {featuredImages}
                 </ul>
             </div>

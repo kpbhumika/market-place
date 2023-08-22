@@ -21,13 +21,13 @@ body {
 
 .welcome-page {
   text-align: center;
-  margin: 100px;
-  padding-top: 90px;
+  margin: 50px;
+  padding-top: 50px;
 }
 
 .user-name {
   text-align: center;
-  margin: 50px
+  margin: 30px
 }
 
 label {
@@ -90,6 +90,7 @@ input[type=password],
   flex: 1;
   max-width: 90px;
   height: 25px;
+  margin-top: 10px;
 }
 
 form {
@@ -124,4 +125,29 @@ form {
 img {
   max-width: 150px;
   max-height: 150px;
+}
+
+.column {
+  float: left;
+  width: auto;
+  padding: 5px;
+}
+
+.row {
+  margin-left : 70px;
+  margin-right: 70px;
+}
+
+.row {
+  display: flex;
+  animation: slide 40s linear infinite;
+}
+
+@keyframes slide {
+  0% {
+      transform: translateX(-100%); /* Start from the left edge of the screen */
+  }
+  100% {
+      transform: translateX(calc(100% + 100px)); /* Move to the right edge of the screen */
+  }
 }
