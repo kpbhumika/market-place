@@ -8,6 +8,7 @@ import Dropzone from "react-dropzone"
 
 const NewListingForm = () => {
 
+    const [errorMessage, setErrorMessage] = useState("")
     const [shouldRedirect, setShouldRedirect] = useState(false);
     const [errors, setErrors] = useState([]);
     const [categories, setCategories] = useState([])
@@ -16,6 +17,7 @@ const NewListingForm = () => {
         description: "",
         price: "",
         condition: "",
+        location: "",
         categoryId: "",
         image: {}
     })
@@ -32,7 +34,6 @@ const NewListingForm = () => {
                 method: "POST",
                 headers: new Headers({
                     "Accept": "image/jpeg",
-                    // "Content-Type": "multipart/form-data"
                 }),
                 body: newListing
             })
@@ -51,9 +52,11 @@ const NewListingForm = () => {
                 setShouldRedirect(true)
             }
         } catch (error) {
+            setErrorMessage("Something went wrong please refresh and try again.")
             console.error("Error in fetch!", error.message);
         }
     };
+    console.log(newListing)
 
     if (shouldRedirect) {
         return <Redirect push to="/user/listings" />;
@@ -74,10 +77,10 @@ const NewListingForm = () => {
 
     const handleImageUpload = (acceptedImage) => {
         setNewListing({
-          ...newListing,
-          image: acceptedImage[0]
+            ...newListing,
+            image: acceptedImage[0]
         })
-      }
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -86,10 +89,11 @@ const NewListingForm = () => {
         newListingBody.append("description", newListing.description)
         newListingBody.append("price", newListing.price)
         newListingBody.append("condition", newListing.condition)
+        newListingBody.append("location", newListing.location)
         newListingBody.append("categoryId", newListing.categoryId)
         newListingBody.append("image", newListing.image)
         postNewListing(newListingBody)
-        // clearForm(event)
+        clearForm(event)
     }
 
     const handleCategoryChange = (event) => {
@@ -106,6 +110,7 @@ const NewListingForm = () => {
             description: "",
             price: "",
             condition: "",
+            location: "",
             categoryId: "",
             image: {}
         })
@@ -113,73 +118,88 @@ const NewListingForm = () => {
 
     return (
         <div className="listing-form">
-            <ErrorList errors={errors} />
-            <h4> Add new listing </h4>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Title
-                    <input
-                        type="text"
-                        name="title"
-                        onChange={handleInputChange}
-                        value={newListing.title}
-                    />
-                </label>
-                <label>
-                    Description
-                    <input
-                        type="text"
-                        name="description"
-                        onChange={handleInputChange}
-                        value={newListing.description}
-                    />
-                </label>
-                <label>
-                    Price
-                    <input
-                        type="text"
-                        name="price"
-                        onChange={handleInputChange}
-                        value={newListing.price}
-                    />
-                </label>
-                <label>
-                    Condition
-                    <input
-                        type="text"
-                        name="condition"
-                        onChange={handleInputChange}
-                        value={newListing.condition}
-                    />
-                </label>
-                <label>
-                    Category
-                    <select
-                        className="form-dropdown"
-                        name="category"
-                        onChange={handleCategoryChange}
-                        value={newListing.categoryId}>
-                        <option value="">Select a category</option>
-                        {categoriesOptions}
-                    </select>
-                </label>
-                <Dropzone onDrop={handleImageUpload}>
-                    {({ getRootProps, getInputProps }) => (
-                        <section>
-                            <div {...getRootProps()}>
-                                <input {...getInputProps()} />
-                                <p>Upload images - drag 'n' drop or click on this to upload</p>
-                            </div>
-                        </section>
-                    )}
-                </Dropzone>
-                <div className="form-button">
-                    <input className="button" type="submit" value="Submit" />
-                    <button className="button" type="button" onClick={clearForm}>
-                        Clear
-                    </button>
-                </div>
-            </form>
+            {errorMessage ? (
+                <div className="error-message">{errorMessage}</div>
+            ) : (
+                <>
+                    <ErrorList errors={errors} />
+                    <h4> Add new listing </h4>
+                    <form onSubmit={handleSubmit}>
+                        <label>
+                            Title
+                            <input
+                                type="text"
+                                name="title"
+                                onChange={handleInputChange}
+                                value={newListing.title}
+                            />
+                        </label>
+                        <label>
+                            Description
+                            <input
+                                type="text"
+                                name="description"
+                                onChange={handleInputChange}
+                                value={newListing.description}
+                            />
+                        </label>
+                        <label>
+                            Price
+                            <input
+                                type="text"
+                                name="price"
+                                onChange={handleInputChange}
+                                value={newListing.price}
+                            />
+                        </label>
+                        <label>
+                            Condition
+                            <input
+                                type="text"
+                                name="condition"
+                                onChange={handleInputChange}
+                                value={newListing.condition}
+                            />
+                        </label>
+                        <label>
+                            City
+                            <input
+                                type="text"
+                                name="location"
+                                onChange={handleInputChange}
+                                value={newListing.location}
+                            />
+                        </label>
+                        <label>
+                            Category
+                            <select
+                                className="form-dropdown"
+                                name="category"
+                                onChange={handleCategoryChange}
+                                value={newListing.categoryId}>
+                                <option value="">Select a category</option>
+                                {categoriesOptions}
+                            </select>
+                        </label>
+                        <Dropzone onDrop={handleImageUpload}>
+                            {({ getRootProps, getInputProps }) => (
+                                <section>
+                                    <div {...getRootProps()}>
+                                        <input {...getInputProps()} />
+                                        <p>Upload images - drag 'n' drop or click on this to upload</p>
+                                    </div>
+                                </section>
+                            )}
+                        </Dropzone>
+                        <div className="form-button">
+                            <input className="button" type="submit" value="Submit" />
+                            <button className="button" type="button" onClick={clearForm}>
+                                Clear
+                            </button>
+                        </div>
+                    </form>
+                </>
+            )}
         </div>
     )
 }

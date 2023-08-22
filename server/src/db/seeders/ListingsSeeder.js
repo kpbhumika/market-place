@@ -14,6 +14,17 @@ class ListingSeeder {
                 description: "Stylish Coffee Table: Elevate your living space with this modern coffee table. Crafted from sleek wood and metal, it seamlessly blends form and function. Its spacious surface offers ample room for beverages, books, or décor. The minimalist design complements various aesthetics. Upgrade your home with this versatile piece.",
                 price: "250",
                 condition: "used",
+                location: "Boston",
+                sellerId: thomas.id,
+                categoryId: furniture.id
+            },
+            {
+                title: "standind desk",
+                description: "Daiah Ergonomic Curved Height Adjustable Standing Desk",
+                price: "150",
+                condition: "used",
+                location: "Boston",
+                image: "https://market-place-development.s3.amazonaws.com/1692651324357",
                 sellerId: thomas.id,
                 categoryId: furniture.id
             },
@@ -21,6 +32,7 @@ class ListingSeeder {
                 title: "women's pant",
                 description: "Athleta Women's Size S Gray Leggings Activewear",
                 price: "30",
+                location: "California",
                 sellerId: jane.id,
                 categoryId: clothes.id
             },
@@ -28,6 +40,7 @@ class ListingSeeder {
                 title: "earphones",
                 description: "Apple Wired EarPods with Lightning Connector",
                 price: "20",
+                location: "Austin",
                 sellerId: bhumika.id,
                 categoryId: electronics.id
             },
@@ -35,6 +48,7 @@ class ListingSeeder {
                 title: "monitor",
                 description: "27inch 4k LG Monitor",
                 price: "100",
+                location: "California",
                 sellerId: thomas.id,
                 categoryId: electronics.id
             }
