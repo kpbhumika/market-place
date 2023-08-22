@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from "react"
 import SearchBar from "./SearchBar"
 import CategoryListings from "./CategoryListings"
-import getAllImages from "../apiClient/getAllImages"
+import { Link } from "react-router-dom";
+import getAllListings from "../apiClient/getAllListings";
+
 
 const HomePage = ({ currentUser }) => {
 
-    const [images, setImages] = useState([])
+    const [listings, setListings] = useState([])
 
     useEffect(() => {
-        getAllImages().then(images => {
-            setImages(images)
+        getAllListings().then(listings => {
+            setListings(listings)
         })
     }, [])
 
-    const featuredImages = images.map((image) => {
-        if (image.image) {
+    const featuredImages = listings.map((listing) => {
+        if (listing.image) {
             return (
-              <li className="column" key={image.id}>
-                <img src={image.image} alt="Featured" />
+              <li className="column" key={listing.id}>
+                    <Link to={`/product/${listing.id}`}><img src={listing.image} alt="Featured" /></Link>
               </li>
             );
           }
@@ -34,7 +36,7 @@ const HomePage = ({ currentUser }) => {
             </div>
             <div className="featured-images">
                 <ul className="row">
-                    {featuredImages}
+                    {currentUser && featuredImages}
                 </ul>
             </div>
             <div className="welcome-page">
