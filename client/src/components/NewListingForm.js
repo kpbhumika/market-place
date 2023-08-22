@@ -4,14 +4,15 @@ import translateServerErrors from "../services/translateServerErrors"
 import { Redirect } from "react-router-dom";
 import getCategories from "../apiClient/getCategories";
 import Dropzone from "react-dropzone"
-
-
+import isListingSafe from "../apiClient/openAI";
+import SafetyReason from "./SafetyReason";
 const NewListingForm = () => {
 
     const [errorMessage, setErrorMessage] = useState("")
     const [shouldRedirect, setShouldRedirect] = useState(false);
     const [errors, setErrors] = useState([]);
     const [categories, setCategories] = useState([])
+    const [reason, setReason] = useState("")
     const [newListing, setNewListing] = useState({
         title: "",
         description: "",
@@ -81,20 +82,25 @@ const NewListingForm = () => {
         })
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        const newListingBody = new FormData()
-        newListingBody.append("title", newListing.title)
-        newListingBody.append("description", newListing.description)
-        newListingBody.append("price", newListing.price)
-        newListingBody.append("condition", newListing.condition)
-        newListingBody.append("location", newListing.location)
-        newListingBody.append("categoryId", newListing.categoryId)
-        newListingBody.append("image", newListing.image)
-        postNewListing(newListingBody)
-        clearForm(event)
+        const safetyCheck = await isListingSafe(newListing)
+        if (safetyCheck.isSafe) {
+            const newListingBody = new FormData()
+            newListingBody.append("title", newListing.title)
+            newListingBody.append("description", newListing.description)
+            newListingBody.append("price", newListing.price)
+            newListingBody.append("condition", newListing.condition)
+            newListingBody.append("location", newListing.location)
+            newListingBody.append("categoryId", newListing.categoryId)
+            newListingBody.append("image", newListing.image)
+            postNewListing(newListingBody)
+            clearForm(event)
+        } else {
+            setReason("Cannot add this listing. Reason : " + safetyCheck.reason)
+        }
     }
-
+    console.log("reason", reason)
     const handleCategoryChange = (event) => {
         setNewListing({
             ...newListing,
@@ -116,89 +122,97 @@ const NewListingForm = () => {
     }
 
     return (
-        <div className="listing-form">
-            {errorMessage ? (
-                <div className="error-message">{errorMessage}</div>
-            ) : (
-                <>
-                    <ErrorList errors={errors} />
-                    <h4> Add new listing </h4>
-                    <form onSubmit={handleSubmit}>
-                        <label>
-                            Title
-                            <input
-                                type="text"
-                                name="title"
-                                onChange={handleInputChange}
-                                value={newListing.title}
-                            />
-                        </label>
-                        <label>
-                            Description
-                            <input
-                                type="text"
-                                name="description"
-                                onChange={handleInputChange}
-                                value={newListing.description}
-                            />
-                        </label>
-                        <label>
-                            Price
-                            <input
-                                type="text"
-                                name="price"
-                                onChange={handleInputChange}
-                                value={newListing.price}
-                            />
-                        </label>
-                        <label>
-                            Condition
-                            <input
-                                type="text"
-                                name="condition"
-                                onChange={handleInputChange}
-                                value={newListing.condition}
-                            />
-                        </label>
-                        <label>
-                            City
-                            <input
-                                type="text"
-                                name="location"
-                                onChange={handleInputChange}
-                                value={newListing.location}
-                            />
-                        </label>
-                        <label>
-                            Category
-                            <select
-                                className="form-dropdown"
-                                name="category"
-                                onChange={handleCategoryChange}
-                                value={newListing.categoryId}>
-                                <option value="">Select a category</option>
-                                {categoriesOptions}
-                            </select>
-                        </label>
-                        <Dropzone onDrop={handleImageUpload}>
-                            {({ getRootProps, getInputProps }) => (
-                                <section>
-                                    <div {...getRootProps()}>
-                                        <input {...getInputProps()} />
-                                        <p>Upload images - drag 'n' drop or click on this to upload</p>
-                                    </div>
-                                </section>
-                            )}
-                        </Dropzone>
-                        <div className="form-button">
-                            <input className="button" type="submit" value="Submit" />
-                            <button className="button" type="button" onClick={clearForm}>
-                                Clear
-                            </button>
-                        </div>
-                    </form>
-                </>
-            )}
+        <div className="grid-x listing-form">
+
+            <div className="cell small-6">
+                <div className="form-data">
+                    {errorMessage ? (
+                        <div className="error-message">{errorMessage}</div>
+                    ) : (
+                        <>
+                            <ErrorList errors={errors} />
+                            <h4> Add new listing </h4>
+                            <form onSubmit={handleSubmit}>
+                                <label>
+                                    Title
+                                    <input
+                                        type="text"
+                                        name="title"
+                                        onChange={handleInputChange}
+                                        value={newListing.title}
+                                    />
+                                </label>
+                                <label>
+                                    Description
+                                    <input
+                                        type="text"
+                                        name="description"
+                                        onChange={handleInputChange}
+                                        value={newListing.description}
+                                    />
+                                </label>
+                                <label>
+                                    Price
+                                    <input
+                                        type="text"
+                                        name="price"
+                                        onChange={handleInputChange}
+                                        value={newListing.price}
+                                    />
+                                </label>
+                                <label>
+                                    Condition
+                                    <input
+                                        type="text"
+                                        name="condition"
+                                        onChange={handleInputChange}
+                                        value={newListing.condition}
+                                    />
+                                </label>
+                                <label>
+                                    City
+                                    <input
+                                        type="text"
+                                        name="location"
+                                        onChange={handleInputChange}
+                                        value={newListing.location}
+                                    />
+                                </label>
+                                <label>
+                                    Category
+                                    <select
+                                        className="form-dropdown"
+                                        name="category"
+                                        onChange={handleCategoryChange}
+                                        value={newListing.categoryId}>
+                                        <option value="">Select a category</option>
+                                        {categoriesOptions}
+                                    </select>
+                                </label>
+                                <Dropzone onDrop={handleImageUpload}>
+                                    {({ getRootProps, getInputProps }) => (
+                                        <section>
+                                            <div {...getRootProps()}>
+                                                <input {...getInputProps()} />
+                                                <p>Upload images - drag 'n' drop or click on this to upload</p>
+                                            </div>
+                                        </section>
+                                    )}
+                                </Dropzone>
+                                <div className="form-button">
+                                    <input className="button" type="submit" value="Submit" />
+                                    <button className="button" type="button" onClick={clearForm}>
+                                        Clear
+                                    </button>
+                                </div>
+                            </form>
+                        </>
+                    )}
+                </div>
+            </div>
+            <div className="cell small-5">
+                <SafetyReason reason={reason} />
+            </div>
         </div>
     )
 }
