@@ -18,7 +18,7 @@ categoryRouter.get("/:category", async (req, res) => {
     try {
         const category = await Category.query().where('name', categoryName)
         const categoryId = category[0].id
-        const categoryListing = await Listing.query().where('categoryId', categoryId).andWhereNot('sellerId',currentUser);
+        const categoryListing = await Listing.query().where('categoryId', categoryId).andWhereNot('sellerId',currentUser).andWhere('sold', false);
         return res.status(200).json({ listings: categoryListing})
     } catch (error) {
         return res.status(500).json({ errors: error })

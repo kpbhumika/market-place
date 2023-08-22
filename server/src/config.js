@@ -2,6 +2,9 @@ import "./boot.js";
 import getNodeEnv from "./config/getNodeEnv.js";
 import getDatabaseUrl from "./config/getDatabaseUrl.cjs";
 
+// const openai = new OpenAIApi(configuration);
+// const response = await openai.listEngines();
+
 const development = {
   awsAccess: { key: process.env.AWS_ACCESS_KEY },
   awsSecret: { key: process.env.AWS_SECRET_KEY },
@@ -9,7 +12,9 @@ const development = {
   databaseUrl: getDatabaseUrl(getNodeEnv()),
   nodeEnv: getNodeEnv(),
   session: { secret: process.env.SESSION_SECRET },
-  web: { host: process.env.HOST || "0.0.0.0", port: process.env.PORT || 3000 }
+  web: { host: process.env.HOST || "0.0.0.0", port: process.env.PORT || 3000 },
+  openaiOrganization: "org-35axyBkP6BmSvKh6UOhFR7rx",
+  openaiApiKey: process.env.OPENAI_API_KEY,
 }
 
 const test = { ...development }
@@ -19,8 +24,8 @@ const production = {
   s3Bucket: { name: process.env.S3_BUCKET_PRODUCTION }
 }
 
-const tempconfig = { development, test, production }
-export const config = tempconfig[getNodeEnv()]
+const tempConfig = { development, test, production }
+export const config = tempConfig[getNodeEnv()]
 
 export default {
   nodeEnv: getNodeEnv(),

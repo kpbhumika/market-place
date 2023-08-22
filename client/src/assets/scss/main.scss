@@ -1,6 +1,7 @@
 @import "./foundation/settings";
 @import "~foundation-sites/scss/foundation";
 @include foundation-everything;
+
 // place global css here
 body {
   background: #232946;
@@ -20,12 +21,13 @@ body {
 
 .welcome-page {
   text-align: center;
-  margin: 100px;
-  padding-top: 90px;
+  margin: 50px;
+  padding-top: 50px;
 }
+
 .user-name {
   text-align: center;
-  margin: 50px
+  margin: 30px
 }
 
 label {
@@ -49,7 +51,7 @@ a {
 }
 
 .listing-form {
-  margin: 20px ;
+  margin: 20px;
   padding: 10px;
 }
 
@@ -59,31 +61,43 @@ a {
   border-radius: 20px;
 }
 
-.form-button, .user-listing-button {
+.form-button,
+.user-listing-button {
   display: flex;
   gap: 10px;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #eebbc3
 }
 
-input[type=text], input[type=password], .form-dropdown {
+input[type=text],
+input[type=password],
+.form-dropdown {
   background-color: rgb(198, 198, 198);
   border-radius: 15px;
 }
+.form-data {
+  width: 80%;
+}
 
-.delete, .sold {
+.delete,
+.sold {
   font-size: 12px;
   padding: 5px;
-  flex:1;
+  flex: 1;
   max-width: 90px;
   height: 25px;
   margin-top: 10px;
 }
 
 form {
-  width: 40%;
+  width: 100%;
 }
 
 .product-discovery {
@@ -106,7 +120,8 @@ form {
   color: #232946;
 }
 
-.filtered-listing, .category-listings {
+.filtered-listing,
+.category-listings {
   padding: 20px;
 }
 
@@ -115,3 +130,37 @@ img {
   max-height: 150px;
 }
 
+.column {
+  float: left;
+  width: auto;
+  padding: 5px;
+}
+
+.row {
+  margin-left: 70px;
+  margin-right: 70px;
+}
+
+.row {
+  display: flex;
+  animation: slide 40s linear infinite;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(calc(100% + 100px));
+  }
+}
+
+.safety-check{
+  text-align: center;
+  margin-top: 40%;
+}
+
+.listing-form{
+  margin: 1% 3%;
+}

@@ -3,11 +3,8 @@ import { Listing } from "../../../models/index.js"
 import { ValidationError } from "objection"
 import cleanUserInput from "../../../services/cleanUserInput.js"
 import uploadImage from "../../../services/uploadImage.js"
-import multer from "multer"
 
 const userListingRouter = new express.Router()
-const uploadMiddleware = uploadImage.single("image")
-
 userListingRouter.get("/", async (req, res) => {
     const sellerId = req.user.id
     try {
@@ -33,7 +30,6 @@ userListingRouter.post("/", uploadImage.single("image"), async (req, res) => {
         if (error instanceof ValidationError) {
             return res.status(422).json({ errors: error.data })
         }
-        console.log("Error in userListingRouter", error)
         return res.status(500).json({ errors: error })
     }
 })
@@ -41,7 +37,6 @@ userListingRouter.post("/", uploadImage.single("image"), async (req, res) => {
 userListingRouter.delete("/:id", async (req, res) => {
     try {
         const listingToDelete = await Listing.query().findById(req.params.id)
-        console.log("image", listingToDelete.image)
         if (listingToDelete.sellerId === req.user.id) {
             await listingToDelete.$query().delete()
         } else {
