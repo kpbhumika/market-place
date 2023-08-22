@@ -14,6 +14,7 @@ import HomePage from "./HomePage";
 import ShowListings from "./ShowListings";
 import NewListingForm from "./NewListingForm";
 import ShowCategoryListings from "./ShowCategoryListings";
+import ImageListing from "./ImageListing";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -63,6 +64,12 @@ const App = (props) => {
           exact={true}
           path="/:category/listings"
           component={ShowCategoryListings}
+          user={currentUser}
+        />
+        <AuthenticatedRoute
+          exact={true}
+          path="/product/:listingId"
+          component={ImageListing}
           user={currentUser}
         />
         <Route exact path="/users/new" component={RegistrationForm} />

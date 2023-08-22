@@ -100,7 +100,7 @@ const NewListingForm = () => {
             setReason("Cannot add this listing. Reason : " + safetyCheck.reason)
         }
     }
-    console.log("reason", reason)
+
     const handleCategoryChange = (event) => {
         setNewListing({
             ...newListing,
