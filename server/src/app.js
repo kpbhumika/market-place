@@ -7,6 +7,8 @@ import "./boot.js";
 import configuration from "./config.js";
 import addMiddlewares from "./middlewares/addMiddlewares.js";
 import rootRouter from "./routes/rootRouter.js";
+import webSocketServer from "./routes/websocketServer.js";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
@@ -34,4 +36,7 @@ app.use(rootRouter);
 app.listen(configuration.web.port, configuration.web.host, () => {
   console.log("Server is listening...");
 });
+
+webSocketServer()
+
 export default app;
