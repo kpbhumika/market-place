@@ -6,6 +6,7 @@ import getCategories from "../apiClient/getCategories";
 import Dropzone from "react-dropzone"
 import isListingSafe from "../apiClient/openAI";
 import SafetyReason from "./SafetyReason";
+
 const NewListingForm = () => {
 
     const [errorMessage, setErrorMessage] = useState("")
@@ -13,6 +14,7 @@ const NewListingForm = () => {
     const [errors, setErrors] = useState([]);
     const [categories, setCategories] = useState([])
     const [reason, setReason] = useState("")
+    const [selectedImage, setSelectedImage] = useState(null)
     const [newListing, setNewListing] = useState({
         title: "",
         description: "",
@@ -79,8 +81,9 @@ const NewListingForm = () => {
         setNewListing({
             ...newListing,
             image: acceptedImage[0]
-        })
-    }
+        });
+        setSelectedImage(URL.createObjectURL(acceptedImage[0]))
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -189,13 +192,20 @@ const NewListingForm = () => {
                                         {categoriesOptions}
                                     </select>
                                 </label>
-                                <Dropzone onDrop={handleImageUpload}>
+
+                                <Dropzone onDrop={handleImageUpload} accept="image/*">
                                     {({ getRootProps, getInputProps }) => (
                                         <section>
-                                            <div {...getRootProps()}>
+                                            <p {...getRootProps()}>
                                                 <input {...getInputProps()} />
-                                                <p>Upload images - drag 'n' drop or click on this to upload</p>
-                                            </div>
+                                                <p style={{ color: "white" }}>Upload images - drag 'n' drop or click here to upload</p>
+                                            </p>
+                                            {selectedImage && (
+                                                <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+                                                    <p>Preview:</p>
+                                                    <img src={selectedImage} alt="Preview" style={{ maxWidth: '100%', maxHeight: '300px' }} />
+                                                </div>
+                                            )}
                                         </section>
                                     )}
                                 </Dropzone>
