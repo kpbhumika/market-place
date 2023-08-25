@@ -35,18 +35,54 @@ class User extends uniqueFunc(Model) {
   }
 
   static get relationMappings() {
-    const { Listing } = require("./index.js");
+    const { Listing, Chat, Message } = require("./index.js");
     return {
-        listings: {
-            relation: Model.HasManyRelation,
-            modelClass: Listing,
-            join: {
-                from: "users.id",
-                to: "listings.sellerId",
-            },
+      listings: {
+        relation: Model.HasManyRelation,
+        modelClass: Listing,
+        join: {
+          from: "users.id",
+          to: "listings.sellerId",
         },
+      },
+      chatsAsSeller: {
+        relation: Model.HasManyRelation,
+        modelClass: Chat,
+        join: {
+          from: "users.id",
+          to: "chats.sellerId",
+        },
+      },
+      chatsAsBuyer: {
+        relation: Model.HasManyRelation,
+        modelClass: Chat,
+        join: {
+          from: "users.id",
+          to: "chats.buyerId",
+        },
+      },
+      sellersIveChattedWith: {
+        relation: Model.ManyToManyRelation,
+        modelClass: User,
+        join: {
+          from: "users.id",
+          through: {
+            from: "chats.buyerId",
+            to: "chats.sellerId"
+          },
+          to: "users.id"
+        }
+      },
+      messages: {
+        relation: Model.HasManyRelation,
+        modelClass: Message,
+        join: {
+          from: "users.id",
+          to: "messages.userId",
+        },
+      },
     };
-}
+  }
 
   $formatJson(json) {
     const serializedJson = super.$formatJson(json);
