@@ -7,6 +7,8 @@ listingsRouter.get("/", async (req, res) => {
     const sellerId = req.user.id
     const query = req.query.title
     try {
+        const sellerId = req.user.id
+        const query = req.query.title
         const listings = await Listing.query().whereNot('sellerId', sellerId).andWhere('sold', false)
             .andWhere(function () {
                 this.where('title', 'ilike', `%${query}%`)
@@ -19,9 +21,9 @@ listingsRouter.get("/", async (req, res) => {
 })
 
 listingsRouter.get("/all", async (req, res) => {
-    const sellerId = req.user.id
     try {
-        const listings = await Listing.query().whereNot('sellerId', sellerId)
+        const sellerId = req.user.id
+        const listings = await Listing.query().whereNot('sellerId', sellerId).andWhere('sold',false)
         return res.status(200).json({ listings })
     } catch (error) {
         return res.status(500).json({ errors: error })
@@ -29,8 +31,8 @@ listingsRouter.get("/all", async (req, res) => {
 })
 
 listingsRouter.get("/:id", async (req, res) => {
-    const listingId = req.params.id
     try {
+        const listingId = req.params.id
         const listing = await Listing.query().findById(listingId)
         return res.status(200).json({ listing })
     } catch (error) {

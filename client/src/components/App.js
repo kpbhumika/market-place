@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { hot } from "react-hot-loader/root";
-import { Link } from "react-router-dom";
 
 import getCurrentUser from "../services/getCurrentUser";
 import "../assets/scss/main.scss";
@@ -15,6 +14,7 @@ import ShowListings from "./ShowListings";
 import NewListingForm from "./NewListingForm";
 import ShowCategoryListings from "./ShowCategoryListings";
 import ImageListing from "./ImageListing";
+import Message from "./Message";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -70,6 +70,12 @@ const App = (props) => {
           exact={true}
           path="/product/:listingId"
           component={ImageListing}
+          user={currentUser}
+        />
+        <AuthenticatedRoute
+          exact={true}
+          path="/chat"
+          component={Message}
           user={currentUser}
         />
         <Route exact path="/users/new" component={RegistrationForm} />
