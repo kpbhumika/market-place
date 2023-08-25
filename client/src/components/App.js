@@ -78,6 +78,12 @@ const App = (props) => {
           component={Message}
           user={currentUser}
         />
+        <AuthenticatedRoute
+          exact={true}
+          path="/:name/:chatId"
+          component={Message}
+          user={currentUser}
+        />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
       </Switch>
