@@ -4,8 +4,8 @@
 
 // place global css here
 body {
-  background: #232946;
-  color: #fffffe
+  background: #d4d8f0;
+  color: #232946
 }
 
 *,
@@ -31,15 +31,16 @@ body {
 }
 
 label {
-  color: #fffffe;
+  color: #232946;
 }
 
 .user-listing,.image-listing{
   padding: 50px;
 }
 
-.top-bar {
-  color: #232946;
+.top-bar , .top-bar ul{
+  color: white;
+  background-color: #232946;
 }
 
 ul {
@@ -47,7 +48,7 @@ ul {
 }
 
 a {
-  color: #232946;
+  color:white;
 }
 
 .listing-form {
@@ -56,8 +57,8 @@ a {
 }
 
 .button {
-  background-color: #eebbc3;
-  color: #232946;
+  background-color: #232946;
+  color: white;
   border-radius: 20px;
 }
 
@@ -67,14 +68,14 @@ a {
   gap: 10px;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: #eebbc3
-}
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//   color: #232946
+// }
 
 input[type=text],
 input[type=password],
@@ -117,7 +118,7 @@ form {
 }
 
 .search-input::placeholder {
-  color: #232946;
+  color: #d4d8f0;
 }
 
 .filtered-listing,
@@ -291,7 +292,7 @@ img {
 #you .message-meta {
   justify-content: flex-start;
   margin-left: 5px;
-  color: #232946;
+  color: #d4d8f0;
 }
 
 #other {
@@ -306,7 +307,7 @@ img {
 #other .message-meta {
   justify-content: flex-end;
   margin-right: 5px;
-  color: #232946;
+  color: #d4d8f0;
 }
 
 .message-meta #author {
@@ -372,10 +373,13 @@ img {
   height:95%;
   display: inline-block;
   border-style: solid;
-  border-color: white;
+  border-color: #121629;
   padding: 10px;
   text-align: center;
   overflow: scroll;
+  background-color: #fff;
+  border-radius: 5%;
+
 }
 
 .container-tile{
