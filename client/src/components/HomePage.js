@@ -17,7 +17,7 @@ const HomePage = ({ currentUser }) => {
                 {currentUser && <FeaturedImages />}
             </div>
             <div className="welcome-page">
-                <h5 >Welcome to MarketMingle App – Your Destination for Discovery and Deals! Browse, buy, and sell a wide range of products and services. Start exploring, connecting, and discovering today!</h5>
+                <h5 className="welcome-message">Welcome to MarketMingle App – Your Destination for Discovery and Deals! Browse, buy, and sell a wide range of products and services. Start exploring, connecting, and discovering today!</h5>
             </div>
         </div>
     )

@@ -4,8 +4,8 @@
 
 // place global css here
 body {
-  background: #d4d8f0;
-  color: #232946
+  background: #E0FFFF;
+  color: #0E2954
 }
 
 *,
@@ -25,22 +25,28 @@ body {
   padding-top: 50px;
 }
 
+.welcome-message {
+  font-weight: bold;
+}
+
 .user-name {
   text-align: center;
   margin: 30px
 }
 
 label {
-  color: #232946;
+  color: #0E2954;
 }
 
-.user-listing,.image-listing{
+.user-listing,
+.image-listing {
   padding: 50px;
 }
 
-.top-bar , .top-bar ul{
+.top-bar,
+.top-bar ul {
   color: white;
-  background-color: #232946;
+  background-color: #0E2954;
 }
 
 ul {
@@ -48,7 +54,7 @@ ul {
 }
 
 a {
-  color:white;
+  color: white;
 }
 
 .listing-form {
@@ -57,7 +63,7 @@ a {
 }
 
 .button {
-  background-color: #232946;
+  background-color: #0E2954;
   color: white;
   border-radius: 20px;
 }
@@ -74,7 +80,7 @@ a {
 // h4,
 // h5,
 // h6 {
-//   color: #232946
+//   color: #0E2954
 // }
 
 input[type=text],
@@ -83,6 +89,7 @@ input[type=password],
   background-color: rgb(198, 198, 198);
   border-radius: 15px;
 }
+
 .form-data {
   width: 80%;
 }
@@ -108,17 +115,19 @@ form {
 }
 
 .category-dropdown {
-  background-color: lightgrey
+  background-color: white;
+  border-color: #0E2954
 }
 
 .search-input {
+  border-color: #0E2954;
   width: 250px;
   padding: 9px 4px 9px 40px;
-  background: lightgrey url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat 13px center;
+  background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat 13px center;
 }
 
 .search-input::placeholder {
-  color: #d4d8f0;
+  color: #0E2954;
 }
 
 .filtered-listing,
@@ -130,19 +139,25 @@ img {
   max-width: 150px;
   max-height: 150px;
 }
-
-.column {
-  float: left;
-  width: auto;
+.featured-images {
+  overflow: hidden;
+}
+.image-container {
+  margin:5px;
   padding: 5px;
+  width: 150px;
+  height: 150px;
+
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
 }
 
 .row {
   margin-left: 70px;
   margin-right: 70px;
-}
-
-.row {
   display: flex;
   animation: slide 40s linear infinite;
 }
@@ -157,16 +172,21 @@ img {
   }
 }
 
-.safety-check{
+.image-listing-details{
+  display: inline-block;
+  border-style: solid;
+  border-color: #0E2954;
+  padding: 1%;
+}
+
+.safety-check {
   text-align: center;
   margin-top: 40%;
 }
 
-.listing-form{
+.listing-form {
   margin: 1% 3%;
 }
-
-
 
 .Message {
   width: 100vw;
@@ -190,6 +210,7 @@ img {
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
+
 .joinChatContainer input {
   width: 210px;
   height: 40px;
@@ -225,6 +246,7 @@ img {
 .chat-window p {
   margin: 0;
 }
+
 .chat-window .chat-header {
   height: 45px;
   border-radius: 6px;
@@ -232,6 +254,7 @@ img {
   position: relative;
   cursor: pointer;
 }
+
 .chat-window .chat-header p {
   display: block;
   padding: 0 1em 0 2em;
@@ -247,6 +270,7 @@ img {
 
   position: relative;
 }
+
 .chat-window .chat-body .message-container {
   width: 100%;
   height: 100%;
@@ -257,6 +281,7 @@ img {
 .chat-window .chat-body .message-container::-webkit-scrollbar {
   display: none;
 }
+
 .chat-window .chat-body .message {
   height: auto;
   padding: 10px;
@@ -292,7 +317,7 @@ img {
 #you .message-meta {
   justify-content: flex-start;
   margin-left: 5px;
-  color: #d4d8f0;
+  color: #EDDBC7;
 }
 
 #other {
@@ -307,7 +332,7 @@ img {
 #other .message-meta {
   justify-content: flex-end;
   margin-right: 5px;
-  color: #d4d8f0;
+  color: #EDDBC7;
 }
 
 .message-meta #author {
@@ -355,12 +380,13 @@ img {
 .chat-window .chat-footer button:hover {
   color: #43a047;
 }
+
 .hide {
   opacity: 0 !important;
 }
 
-.user-chats a{
-  color:white
+.user-chats a {
+  color: white
 }
 
 .tiles {
@@ -368,9 +394,10 @@ img {
   margin: 0 auto;
 }
 
-.listing-tile, .category-listing{
+.listing-tile,
+.category-listing {
   width: calc(600px / 3);
-  height:95%;
+  height: 95%;
   display: inline-block;
   border-style: solid;
   border-color: #121629;
@@ -382,8 +409,11 @@ img {
 
 }
 
-.container-tile{
+.container-tile {
   margin: 5% 2.5%;
 }
 
-
+.full-image img{
+  min-width: 500px;
+  min-height: 400px
+}
