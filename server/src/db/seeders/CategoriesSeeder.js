@@ -3,18 +3,18 @@ import { Category } from "../../models/index.js"
 class CategorySeeder {
     static async seed() {
         const categoryData = [
-            {
-                name: "Furniture"
-            },
-            {
-                name: "Clothes"
-            },
-            {
-                name: "Electronics"
-            },
-            {
-                name: "Other"
-            }
+            {name: "Home and Living"},
+            {name: "Fashion and Apparel"},
+            {name: "Beauty and Cosmetics"},
+            {name: "Books and Stationery"},
+            {name: "Pet Accessories"},
+            {name: "Event Tickets"},
+            {name: "Arts and Crafts"},
+            {name: "Electronics"},
+            {name: "Entertainment"},
+            {name: "Health and Wellness"},
+            {name: "Antiques and Collectibles"},
+            {name: "Other"}
         ]
 
         for (const category of categoryData) {

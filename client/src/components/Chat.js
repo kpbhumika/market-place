@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
+import io from "socket.io-client";
+const socket = io.connect("http://localhost:3001");
+import { useParams } from "react-router-dom";
 
-const Chat = ({ socket, user , room , name})=> {
+const Chat = ({user})=> {
+    console.log("inside chat")
+    const {chatId, chatName} = useParams()
+    console.log(useParams())
     const [currentMessage, setCurrentMessage] = useState("");
     const [messageList, setMessageList] = useState([]);
     console.log(messageList)
     const sendMessage = async () => {
         if (currentMessage !== "") {
             const messageData = {
-                room: room,
+                chatId: chatId,
                 author: user.firstName,
                 message: currentMessage,
                 time:
@@ -32,7 +38,7 @@ const Chat = ({ socket, user , room , name})=> {
     return (
         <div className="chat-window">
             <div className="chat-header">
-                <p>{name}</p>
+                <p>{chatName}</p>
             </div>
             <div className="chat-body">
                 <ScrollToBottom className="message-container">

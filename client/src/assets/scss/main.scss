@@ -93,7 +93,7 @@ input[type=password],
   flex: 1;
   max-width: 90px;
   height: 25px;
-  margin-top: 10px;
+  margin-top: auto;
 }
 
 form {
@@ -361,3 +361,25 @@ img {
 .user-chats a{
   color:white
 }
+
+.tiles {
+  font-size: 0;
+  margin: 0 auto;
+}
+
+.listing-tile, .category-listing{
+  width: calc(600px / 3);
+  height:95%;
+  display: inline-block;
+  border-style: solid;
+  border-color: white;
+  padding: 10px;
+  text-align: center;
+  overflow: scroll;
+}
+
+.container-tile{
+  margin: 5% 2.5%;
+}
+
+
