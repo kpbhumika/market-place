@@ -82,7 +82,6 @@ const FeaturedImages = ({ currentUser }) => {
                                 <br></br>
                                 <button className="button contact-seller" type="button" onClick={handleContactSeller}>Contact Seller</button>
                             </div>
-
                         </div>
                     </div>
                 )}
