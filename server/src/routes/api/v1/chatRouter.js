@@ -33,24 +33,18 @@ chatRouter.get("/", async (req, res) => {
 chatRouter.post('/', async (req, res) => {
     try {
         const { sellerId, buyerId } = cleanUserInput(req.body);
-
-        // Check if a chat already exists with the given sellerId and buyerId
         const chatPresent = await Chat.query().findOne({ sellerId, buyerId });
 
         if (chatPresent) {
-            // A chat already exists, so update the sellerName and return the chat
             const seller = await User.query().findById(sellerId).select('firstName');
             chatPresent.sellerName = seller ? seller.firstName : '';
             return res.status(201).json({ chat: chatPresent });
         } else {
-            // Create a new chat and add the sellerName to it
             const seller = await User.query().findById(sellerId);
             const addedChat = await Chat.query().insertAndFetch({ sellerId, buyerId });
-
             if (seller) {
                 addedChat.sellerName = seller.firstName;
             }
-
             return res.status(201).json({ chat: addedChat });
         }
     } catch (error) {

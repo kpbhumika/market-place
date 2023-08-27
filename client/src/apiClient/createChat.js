@@ -1,7 +1,7 @@
-const createChat = async (listingId, currentUser) => {
+const createChat = async (sellerId, currentUser) => {
 
   const chat = {
-    sellerId: listingId,
+    sellerId: sellerId,
     buyerId: currentUser
   }
 

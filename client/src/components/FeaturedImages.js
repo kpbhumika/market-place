@@ -27,7 +27,7 @@ const FeaturedImages = ({ currentUser }) => {
 
     const handleContactSeller = (event) => {
         event.preventDefault()
-        createChat(selectedListing.id, currentUser.id).then((chat) => {
+        createChat(selectedListing.sellerId, currentUser.id).then((chat) => {
             setChatName(chat.sellerName)
             setChatId(chat.id)
             setRedirect(true)

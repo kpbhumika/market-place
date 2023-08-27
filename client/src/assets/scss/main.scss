@@ -74,15 +74,6 @@ a {
   gap: 10px;
 }
 
-// h1,
-// h2,
-// h3,
-// h4,
-// h5,
-// h6 {
-//   color: #0E2954
-// }
-
 input[type=text],
 input[type=password],
 .form-dropdown {
@@ -174,8 +165,6 @@ img {
 
 .image-listing-details{
   display: inline-block;
-  // border-style: solid;
-  // border-color: #0E2954;
   padding: 1%;
 }
 
@@ -317,7 +306,7 @@ img {
 #you .message-meta {
   justify-content: flex-start;
   margin-left: 5px;
-  color: #EDDBC7;
+  color: #0E2954
 }
 
 #other {
@@ -332,7 +321,7 @@ img {
 #other .message-meta {
   justify-content: flex-end;
   margin-right: 5px;
-  color: #EDDBC7;
+  color: #0E2954;
 }
 
 .message-meta #author {
