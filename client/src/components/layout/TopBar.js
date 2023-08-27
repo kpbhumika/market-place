@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SignOutButton from "../authentication/SignOutButton";
-import CategoryListings from "../CategoryListings";
 
 const TopBar = ({ user }) => {
   const unauthenticatedListItems = [
@@ -25,9 +24,8 @@ const TopBar = ({ user }) => {
     <div className="top-bar">
       <div className="top-bar-left">
         <ul className="menu">
-          <li className="menu-text">MarketMingle</li>
           <li>
-            <Link to="/">Home</Link>
+            <Link className="menu-text" to="/">MarketMingle</Link>
           </li>
           <li>
             <Link to={`/user/listings`}>My Listings</Link>

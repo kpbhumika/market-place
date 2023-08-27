@@ -13,8 +13,9 @@ import HomePage from "./HomePage";
 import ShowListings from "./ShowListings";
 import NewListingForm from "./NewListingForm";
 import ShowCategoryListings from "./ShowCategoryListings";
-import ImageListing from "./ImageListing";
 import Message from "./Message";
+import UserChat from "./UserChat";
+import UserTileShow from "./UserTileShow";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -68,20 +69,20 @@ const App = (props) => {
         />
         <AuthenticatedRoute
           exact={true}
-          path="/product/:listingId"
-          component={ImageListing}
-          user={currentUser}
-        />
-        <AuthenticatedRoute
-          exact={true}
           path="/chat"
+          component={UserChat}
+          user={currentUser}
+        />
+        <AuthenticatedRoute
+          exact={true}
+          path="/message/:chatName/:chatId"
           component={Message}
           user={currentUser}
         />
         <AuthenticatedRoute
           exact={true}
-          path="/:name/:chatId"
-          component={Message}
+          path="/listing/:id"
+          component={UserTileShow}
           user={currentUser}
         />
         <Route exact path="/users/new" component={RegistrationForm} />

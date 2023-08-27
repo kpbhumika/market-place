@@ -8,7 +8,6 @@ const UserChat = () => {
 
     useEffect(() => {
         getUserChats().then((chats) => {
-            console.log(chats)
             setUserChats(chats)
         })
     }, [])
@@ -22,7 +21,7 @@ const UserChat = () => {
         }
         return (
             <li>
-                <Link to={`/${chat.firstName}/${chat.id}`}>{chatName}</Link>
+                <Link to={`message/${chatName}/${chat.id}`}>{chatName}</Link>
             </li>
         )
     });

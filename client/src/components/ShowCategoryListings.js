@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 const ShowCategoryListings = (props) => {
     const { category } = useParams()
     const [categoryListings, setCategoryListings] = useState([])
-
     useEffect(() => {
         getCategoryListings(category).then(listings => {
             setCategoryListings(listings)
@@ -14,21 +13,21 @@ const ShowCategoryListings = (props) => {
 
     const filteredListings = categoryListings.map((listing) => {
         return (
-            <li>
-                <h4>{listing.title} - {listing.price}$</h4>
-                <p>{listing.description}</p>
-                {listing.condition && <p>Condition : {listing.condition}</p>}
-                <p>Location : {listing.location}</p>
-                {listing.image && <img src={listing.image} />}
-                <br></br>
-            </li>
+            <div className="cell small-6 medium-3 large-2 container-tile">
+                <div className="listing-tile">
+                    {listing.image && <img src={listing.image} />}
+                    <h5>{listing.title}</h5>
+                    <h3>{listing.price}$</h3>
+                </div>
+            </div>
+
         )
     });
 
     return (
         <div className="category-listings">
             <h3>Listings under {category}: </h3><br></br>
-            <ul>
+            <ul className="tiles grid-x">
                 {filteredListings}
             </ul>
         </div>
