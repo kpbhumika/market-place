@@ -130,11 +130,13 @@ img {
   max-width: 150px;
   max-height: 150px;
 }
+
 .featured-images {
   overflow: hidden;
 }
+
 .image-container {
-  margin:5px;
+  margin: 5px;
   padding: 5px;
   width: 150px;
   height: 150px;
@@ -163,7 +165,7 @@ img {
   }
 }
 
-.image-listing-details{
+.image-listing-details {
   display: inline-block;
   padding: 1%;
 }
@@ -380,29 +382,31 @@ img {
 
 .tiles {
   font-size: 0;
-  margin: 0 auto;
+  margin: 30px;
 }
 
 .listing-tile,
 .category-listing {
-  width: calc(600px / 3);
   height: 95%;
-  display: inline-block;
   border-style: solid;
   border-color: #121629;
-  padding: 10px;
-  text-align: center;
-  overflow: scroll;
+  overflow-block: scroll;
   background-color: #fff;
   border-radius: 5%;
-
 }
 
-.container-tile {
-  margin: 5% 2.5%;
-}
-
-.full-image img{
+.full-image img {
   min-width: 500px;
   min-height: 400px
+}
+
+.listing-details {
+  align-content: center;
+  text-align: center;
+  padding: 10%;
+}
+
+.listing-image {
+  padding-left: 10%;
+  padding-top: 10%;
 }

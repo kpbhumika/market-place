@@ -1,5 +1,5 @@
 
-const markAsSold = async (id) => {
+const markAsSoldAPI = async (id) => {
     try {
       const response = await fetch(`/api/v1/userListings/${id}`, {
         method: "PATCH",
@@ -25,4 +25,4 @@ const markAsSold = async (id) => {
     }
   }
 
-export default markAsSold
+export default markAsSoldAPI
