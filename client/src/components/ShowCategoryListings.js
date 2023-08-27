@@ -58,8 +58,8 @@ const ShowCategoryListings = ({ user }) => {
 
     return (
         <div className="user-listing tiles ">
-            <h3>Listings under {category}: </h3><br></br>
-            <div className="grid-x grid-margin-x"> {filteredListings}
+            <h3>Listings under '{category}' </h3><br></br>
+            <div className="tile grid-x grid-margin-x"> {filteredListings}
                 <Modal
                     isOpen={modalIsOpen}
                     onRequestClose={closeModal}
