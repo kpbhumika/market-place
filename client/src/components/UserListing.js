@@ -46,23 +46,26 @@ const UserListing = (props) => {
     return (
         <div className="user-listing tiles ">
             {userListings.length === 0 ? "You don't have any listings yet." : (
-                <div className="grid-x grid-margin-x">
-                    {listings}
-                    <Modal
-                        isOpen={modalIsOpen}
-                        onRequestClose={closeModal}
-                        contentLabel="User-listing Modal"
-                    >
-                        <UserListingTile
-                            selectedListing={selectedListing}
-                            setModalIsOpen={setModalIsOpen}
-                            closeModal={closeModal}
-                            userListings={userListings}
-                            setUserListings={setUserListings}
-                            setMarkAsSold={setMarkAsSold}
-                            markAsSold={markAsSold} />
-                    </Modal>
-                </div>
+                <>
+                    <h3>Your Listings </h3>
+                    <div className="tile grid-x grid-margin-x">
+                        {listings}
+                        <Modal
+                            isOpen={modalIsOpen}
+                            onRequestClose={closeModal}
+                            contentLabel="User-listing Modal"
+                        >
+                            <UserListingTile
+                                selectedListing={selectedListing}
+                                setModalIsOpen={setModalIsOpen}
+                                closeModal={closeModal}
+                                userListings={userListings}
+                                setUserListings={setUserListings}
+                                setMarkAsSold={setMarkAsSold}
+                                markAsSold={markAsSold} />
+                        </Modal>
+                    </div>
+                </>
             )}
         </div>
     )

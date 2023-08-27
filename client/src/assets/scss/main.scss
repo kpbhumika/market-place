@@ -38,9 +38,11 @@ label {
   color: #0E2954;
 }
 
-.user-listing,
 .image-listing {
   padding: 50px;
+}
+.user-listing {
+  padding: 10px
 }
 
 .top-bar,
@@ -408,4 +410,8 @@ img {
 .listing-image {
   padding-left: 10%;
   padding-top: 10%;
+}
+
+.tile {
+  padding-top: 2%;
 }
