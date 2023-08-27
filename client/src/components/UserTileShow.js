@@ -3,10 +3,8 @@ import { useParams } from "react-router-dom";
 
 
 const UserTileShow = () => {
-    console.log(useParams())
     const slicedDesc = listing.description.slice(0, 12)
     slicedDesc += "..."
-    console.log("sliced",slicedDesc)
     return (
         <div className="listing-show">
             {listing.image && <img src={listing.image} />}

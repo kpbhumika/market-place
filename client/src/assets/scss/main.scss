@@ -159,7 +159,7 @@ img {
   margin-left: 70px;
   margin-right: 70px;
   display: flex;
-  animation: slide 40s linear infinite;
+  animation: slide 100s linear infinite;
 }
 
 @keyframes slide {
@@ -174,8 +174,8 @@ img {
 
 .image-listing-details{
   display: inline-block;
-  border-style: solid;
-  border-color: #0E2954;
+  // border-style: solid;
+  // border-color: #0E2954;
   padding: 1%;
 }
 

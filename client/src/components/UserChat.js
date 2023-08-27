@@ -8,7 +8,6 @@ const UserChat = () => {
 
     useEffect(() => {
         getUserChats().then((chats) => {
-            console.log(chats)
             setUserChats(chats)
         })
     }, [])
