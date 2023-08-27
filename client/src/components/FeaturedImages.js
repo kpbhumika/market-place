@@ -69,10 +69,10 @@ const FeaturedImages = ({ currentUser }) => {
                             Close
                         </button>
                         <div className="image-listing grid-x">
-                            <div className="full-image cell small-8">
+                            <div className="full-image cell small-12 large-8">
                                 {selectedListing.image && <img src={selectedListing.image} />}
                             </div>
-                            <div className="image-listing-details cell small-4">
+                            <div className="image-listing-details cell small-12 large-4">
                                 <h4>{selectedListing.title}</h4>
                                 <h4>{selectedListing.price}$</h4>
                                 <br></br>
