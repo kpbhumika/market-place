@@ -1,4 +1,4 @@
-const getMessages = async () => {
+const getMessages = async (chatId) => {
     try {
         const response = await fetch(`/api/v1/messages/${chatId}`)
         if (!response.status) {

@@ -14,18 +14,21 @@ class MessageSeeder {
             {
                 text: "Hi from Thomas!",
                 userId: thomas.id,
-                chatId:chat1.id
+                chatId: chat3.id,
+                time:"2023-08-27 10:00:00"
 
             },
             {
                 text: "Hi from Bhumika!",
                 userId: bhumika.id,
-                chatId:chat3.id
+                chatId: chat3.id,
+                time:"2023-08-27 11:30:00"
             },
             {
                 text: "I would like to buy this item.",
                 userId: bhumika.id,
-                chatId:chat2.id
+                chatId: chat2.id,
+                time:"2023-08-27 10:00:00"
             }
         ]
 
