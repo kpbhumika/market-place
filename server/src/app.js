@@ -7,7 +7,7 @@ import "./boot.js";
 import configuration from "./config.js";
 import addMiddlewares from "./middlewares/addMiddlewares.js";
 import rootRouter from "./routes/rootRouter.js";
-import webSocketServer from "./routes/websocketServer.js";
+import webSocketServer from "./routes/webSocketServer.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
