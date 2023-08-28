@@ -25,7 +25,7 @@ const webSocketServer = () => {
         });
 
         socket.on("send_message", (data) => {
-            socket.to(data.room).emit("receive_message", data);
+            socket.to(data.chatId).emit("receive_message", data);
         });
 
         socket.on("disconnect", () => {
