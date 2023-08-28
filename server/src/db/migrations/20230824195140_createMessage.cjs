@@ -11,6 +11,7 @@ exports.up = async (knex) => {
         table.string("text").notNullable()
         table.bigInteger("userId").references("users.id").index().unsigned().notNullable()
         table.bigInteger("chatId").references("chats.id").index().unsigned().notNullable()
+        table.time("time").notNullable()
         table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now())
         table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now());
     })

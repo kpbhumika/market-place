@@ -19,6 +19,10 @@ body {
   tab-size: 4;
 }
 
+.grid-container {
+  padding-top: 4%;
+  width: 40%;
+}
 .welcome-page {
   text-align: center;
   margin: 50px;
@@ -36,6 +40,7 @@ body {
 
 label {
   color: #0E2954;
+  font-weight: bold;
 }
 
 .image-listing {
@@ -79,8 +84,9 @@ a {
 input[type=text],
 input[type=password],
 .form-dropdown {
-  background-color: rgb(198, 198, 198);
-  border-radius: 15px;
+  background-color: white;
+  border-radius: 10px;
+  border-color: #0E2954;
 }
 
 .form-data {

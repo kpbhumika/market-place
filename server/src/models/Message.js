@@ -7,9 +7,10 @@ class Message extends Model {
     static get jsonSchema() {
         return {
             type: "object",
-            required: ["text"],
+            required: ["text", "time"],
             properties: {
                 text: { type: "string", minLength: 1 },
+                time: { type: "string" },
             }
         }
     }

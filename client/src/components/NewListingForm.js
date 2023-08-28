@@ -198,7 +198,7 @@ const NewListingForm = () => {
                                         <section>
                                             <p {...getRootProps()}>
                                                 <input {...getInputProps()} />
-                                                <p style={{ color: "white" }}>Upload images - drag 'n' drop or click here to upload</p>
+                                                <p style={{ color: "#0E2954" }}>Upload images - drag 'n' drop or click here to upload</p>
                                             </p>
                                             {selectedImage && (
                                                 <div style={{ marginTop: '20px', marginBottom: '20px' }}>

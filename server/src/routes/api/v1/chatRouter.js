@@ -33,10 +33,12 @@ chatRouter.get("/", async (req, res) => {
 chatRouter.post('/', async (req, res) => {
     try {
         const { sellerId, buyerId } = cleanUserInput(req.body);
-        const chatPresent = await Chat.query().findOne({ sellerId, buyerId });
+        const chatPresent1 = await Chat.query().findOne({ sellerId:sellerId, buyerId:buyerId });
+        const chatPresent2 = await Chat.query().findOne({ sellerId:buyerId, buyerId:sellerId })
 
-        if (chatPresent) {
+        if (chatPresent1 || chatPresent2) {
             const seller = await User.query().findById(sellerId).select('firstName');
+            const chatPresent = chatPresent1 || chatPresent2;
             chatPresent.sellerName = seller ? seller.firstName : '';
             return res.status(201).json({ chat: chatPresent });
         } else {

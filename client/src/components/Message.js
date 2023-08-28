@@ -3,21 +3,32 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import io from "socket.io-client";
 const socket = io.connect("http://localhost:3001");
 import { useParams } from "react-router-dom";
+import getMessages from "../apiClient/getMessages";
 
-const Message = ({user})=> {
-    const {chatId, chatName} = useParams()
+const Message = ({ user }) => {
+    const { chatId, chatName } = useParams()
     const [currentMessage, setCurrentMessage] = useState("");
     const [messageList, setMessageList] = useState([]);
+    const [oldMessages, setOldMessages] = useState([])
+
+    useEffect(() => {
+        getMessages(chatId).then((messages) => {
+            setMessageList(messages);
+        });
+    }, [chatId]);
+
     const sendMessage = async () => {
         if (currentMessage !== "") {
             const messageData = {
                 chatId: chatId,
                 author: user.firstName,
-                message: currentMessage,
+                text: currentMessage,
                 time:
                     new Date(Date.now()).getHours() +
                     ":" +
-                    new Date(Date.now()).getMinutes(),
+                    new Date(Date.now()).getMinutes()+
+                    ":" +
+                    new Date(Date.now()).getSeconds(),
             };
             await socket.emit("send_message", messageData);
             setMessageList((list) => [...list, messageData]);
@@ -46,7 +57,7 @@ const Message = ({user})=> {
                             >
                                 <div>
                                     <div className="message-content">
-                                        <p>{messageContent.message}</p>
+                                        <p>{messageContent.text}</p>
                                     </div>
                                     <div className="message-meta">
                                         <p id="time">{messageContent.time}</p>
