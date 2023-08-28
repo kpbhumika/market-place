@@ -19,6 +19,10 @@ const HomePage = ({ currentUser }) => {
             <div className="welcome-page">
                 <h5 className="welcome-message">Welcome to MarketMingle App – Your Destination for Discovery and Deals! Browse, buy, and sell a wide range of products and services. Start exploring, connecting, and discovering today!</h5>
             </div>
+
+            <div className="homepage-image">
+                {!currentUser && <img src="https://www.aycelaborytax.com/wp-content/uploads/2019/05/economia-colaborativa.jpg" alt="External Image" />}
+            </div>
         </div>
     )
 }
