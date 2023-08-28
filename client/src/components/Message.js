@@ -4,12 +4,12 @@ import io from "socket.io-client";
 const socket = io.connect("http://localhost:3001");
 import { useParams } from "react-router-dom";
 import getMessages from "../apiClient/getMessages";
+import postMessages from "../apiClient/postMessages";
 
 const Message = ({ user }) => {
     const { chatId, chatName } = useParams()
     const [currentMessage, setCurrentMessage] = useState("");
     const [messageList, setMessageList] = useState([]);
-    const [oldMessages, setOldMessages] = useState([])
 
     useEffect(() => {
         getMessages(chatId).then((messages) => {
@@ -26,10 +26,11 @@ const Message = ({ user }) => {
                 time:
                     new Date(Date.now()).getHours() +
                     ":" +
-                    new Date(Date.now()).getMinutes()+
+                    new Date(Date.now()).getMinutes() +
                     ":" +
                     new Date(Date.now()).getSeconds(),
             };
+            postMessages(messageData)
             await socket.emit("send_message", messageData);
             setMessageList((list) => [...list, messageData]);
             setCurrentMessage("");
@@ -43,47 +44,53 @@ const Message = ({ user }) => {
     }, [socket]);
 
     return (
-        <div className="chat-window">
-            <div className="chat-header">
-                <p>{chatName}</p>
-            </div>
-            <div className="chat-body">
-                <ScrollToBottom className="message-container">
-                    {messageList.map((messageContent) => {
-                        return (
-                            <div
-                                className="message"
-                                id={user.firstName === messageContent.author ? "you" : "other"}
-                            >
-                                <div>
-                                    <div className="message-content">
-                                        <p>{messageContent.text}</p>
-                                    </div>
-                                    <div className="message-meta">
-                                        <p id="time">{messageContent.time}</p>
-                                        <p id="author">{messageContent.author}</p>
+        <div className="message-box grid-x grid-margin-x">
+            <div className="chat-window cell small-12 large-4">
+                <div className="chat-header">
+                    <p>{chatName}</p>
+                </div>
+                <div className="chat-body">
+                    <ScrollToBottom className="message-container">
+                        {messageList.map((messageContent) => {
+                            return (
+                                <div
+                                    className="message"
+                                    id={user.firstName === messageContent.author ? "you" : "other"}
+                                >
+                                    <div>
+                                        <div className="message-content">
+                                            <p>{messageContent.text}</p>
+                                        </div>
+                                        <div className="message-meta">
+                                            <p id="time">{messageContent.time}</p>
+                                            <p id="author">{messageContent.author}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        );
-                    })}
-                </ScrollToBottom>
+                            );
+                        })}
+                    </ScrollToBottom>
+                </div>
+                <div className="chat-footer">
+                    <input
+                        type="text"
+                        value={currentMessage}
+                        placeholder="Hey..."
+                        onChange={(event) => {
+                            setCurrentMessage(event.target.value);
+                        }}
+                        onKeyPress={(event) => {
+                            event.key === "Enter" && sendMessage();
+                        }}
+                    />
+                    <button onClick={sendMessage}>&#9658;</button>
+                </div>
             </div>
-            <div className="chat-footer">
-                <input
-                    type="text"
-                    value={currentMessage}
-                    placeholder="Hey..."
-                    onChange={(event) => {
-                        setCurrentMessage(event.target.value);
-                    }}
-                    onKeyPress={(event) => {
-                        event.key === "Enter" && sendMessage();
-                    }}
-                />
-                <button onClick={sendMessage}>&#9658;</button>
+            <div className=" message-image cell small-12 large-8">
+                <img src="https://img.freepik.com/free-icon/chat_318-182845.jpg" alt="External Image" />
             </div>
         </div>
+
     );
 }
 

@@ -220,7 +220,7 @@ const NewListingForm = () => {
                     )}
                 </div>
             </div>
-            <div className="cell small-5">
+            <div className=" cell small-5">
                 <SafetyReason reason={reason} />
             </div>
         </div>

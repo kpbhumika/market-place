@@ -3,38 +3,44 @@ import getUserChats from "../apiClient/getUserChats";
 import { Link } from "react-router-dom";
 
 const UserChat = () => {
-
-    const [userChats, setUserChats] = useState([])
+    const [userChats, setUserChats] = useState([]);
 
     useEffect(() => {
         getUserChats().then((chats) => {
-            setUserChats(chats)
-        })
-    }, [])
+            setUserChats(chats);
+        });
+    }, []);
 
     const userChatsList = userChats.map((chat) => {
-        let chatName
+        let chatName;
         if (chat.currentUserIs === "buyer") {
-            chatName = chat.seller.firstName
+            chatName = chat.seller.firstName;
         } else {
-            chatName = chat.buyer.firstName
+            chatName = chat.buyer.firstName;
         }
         return (
-            <li>
+            <li key={chat.id}>
                 <Link to={`message/${chatName}/${chat.id}`}>{chatName}</Link>
             </li>
-        )
+        );
     });
 
     return (
-        <>
-            <h1>Chats</h1>
-            <ul className="user-chats">
-                {userChatsList}
-            </ul>
-        </>
+        <div className="user-chat-container">
+            <h1 className="chat-header">Chats</h1>
+            <ul className="user-chats-list">
+                <div className="grid-x grid-margin-x">
+                    <div className="cell small-12 large-8">
+                        {userChatsList}
+                    </div>
+                    <div className=" chat-image cell small-12 large-4">
+                        <img src="https://www.vhv.rs/dpng/d/53-530391_messages-icon-png-transparent-png.png" alt="External Image" />
+                    </div>
+                </div>
 
-    )
+            </ul>
+        </div>
+    );
 }
 
-export default UserChat
+export default UserChat;
