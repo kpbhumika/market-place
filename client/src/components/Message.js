@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import io from "socket.io-client";
-const socket = io.connect("http://localhost:3001");
 import { useParams } from "react-router-dom";
 import getMessages from "../apiClient/getMessages";
 import postMessages from "../apiClient/postMessages";
+
+
+let host="http://localhost:3001"
+if(!window.location.host.includes("localhost")){
+    host="https://market-mingle-c1e74b26ea17.herokuapp.com"
+}
+
+const socket = io.connect(host);
 
 const Message = ({ user }) => {
     const { chatId, chatName } = useParams()
