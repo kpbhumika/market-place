@@ -33,7 +33,7 @@ const webSocketServer = () => {
         });
     });
 
-    server.listen(process.env.PORT || 3001, () => {
+    server.listen(3001, () => {
         console.log("WebSocket Server is listening...");
     });
 }
