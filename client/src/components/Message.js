@@ -12,6 +12,7 @@ const Message = ({ user }) => {
     const [messageList, setMessageList] = useState([]);
 
     useEffect(() => {
+        socket.emit("join_room", chatId)
         getMessages(chatId).then((messages) => {
             setMessageList(messages);
         });
@@ -38,6 +39,7 @@ const Message = ({ user }) => {
     };
 
     useEffect(() => {
+
         socket.on("receive_message", (data) => {
             setMessageList((list) => [...list, data]);
         });
