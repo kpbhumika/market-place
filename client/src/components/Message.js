@@ -6,7 +6,7 @@ import getMessages from "../apiClient/getMessages";
 import postMessages from "../apiClient/postMessages";
 
 
-let host="http://localhost:3001"
+let host="http://localhost:3000"
 if(!window.location.host.includes("localhost")){
     host="https://market-mingle-c1e74b26ea17.herokuapp.com"
 }

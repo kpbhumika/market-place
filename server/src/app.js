@@ -7,7 +7,8 @@ import "./boot.js";
 import configuration from "./config.js";
 import addMiddlewares from "./middlewares/addMiddlewares.js";
 import rootRouter from "./routes/rootRouter.js";
-import webSocketServer from "./routes/webSocketServer.js";
+import { Server } from "socket.io"
+import { createServer } from "http"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -33,10 +34,31 @@ app.use(
 app.use(bodyParser.json());
 addMiddlewares(app);
 app.use(rootRouter);
-app.listen(configuration.web.port, configuration.web.host, () => {
-  console.log("Server is listening...");
+
+const server = createServer(app);
+
+const io = new Server(server)
+
+io.on("connection", (socket) => {
+  console.log(`User Connected: ${socket.id}`);
+
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`User with ID: ${socket.id} joined room: ${data}`);
+  });
+
+  socket.on("send_message", (data) => {
+    socket.to(data.chatId).emit("receive_message", data);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User Disconnected", socket.id);
+  });
 });
 
-webSocketServer()
+server.listen(configuration.web.port, configuration.web.host, () => {
+  console.log(`Server is listening on port ${configuration.web.port}`);
+});
+
 
 export default app;

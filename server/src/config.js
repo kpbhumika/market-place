@@ -2,9 +2,6 @@ import "./boot.js";
 import getNodeEnv from "./config/getNodeEnv.js";
 import getDatabaseUrl from "./config/getDatabaseUrl.cjs";
 
-// const openai = new OpenAIApi(configuration);
-// const response = await openai.listEngines();
-
 const development = {
   awsAccess: { key: process.env.AWS_ACCESS_KEY },
   awsSecret: { key: process.env.AWS_SECRET_KEY },
