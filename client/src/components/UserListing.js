@@ -45,7 +45,7 @@ const UserListing = (props) => {
 
     return (
         <div className="user-listing tiles ">
-            {userListings.length === 0 ? "You don't have any listings yet." : (
+            {userListings.length == 0 ? <h3>You don't have any listings yet.</h3> : (
                 <>
                     <h3>Your Listings </h3>
                     <div className="tile grid-x grid-margin-x">
