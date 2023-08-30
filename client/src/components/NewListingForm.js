@@ -15,6 +15,7 @@ const NewListingForm = () => {
     const [categories, setCategories] = useState([])
     const [reason, setReason] = useState("")
     const [selectedImage, setSelectedImage] = useState(null)
+    const [loading, setLoading] = useState(false)
     const [newListing, setNewListing] = useState({
         title: "",
         description: "",
@@ -87,7 +88,11 @@ const NewListingForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+        setLoading(true)
         const safetyCheck = await isListingSafe(newListing)
+        if (safetyCheck) {
+            setLoading(false)
+        }
         if (safetyCheck.isSafe) {
             const newListingBody = new FormData()
             newListingBody.append("title", newListing.title)
@@ -131,6 +136,8 @@ const NewListingForm = () => {
                 <div className="form-data">
                     {errorMessage ? (
                         <div className="error-message">{errorMessage}</div>
+                    ) : loading ? (
+                        <h4>Performing safety checks for your listing.</h4>
                     ) : (
                         <>
                             <ErrorList errors={errors} />
