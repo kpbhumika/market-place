@@ -144,7 +144,7 @@ const NewListingForm = () => {
                             <h4> Add new listing </h4>
                             <form onSubmit={handleSubmit}>
                                 <label>
-                                    Title
+                                    Title *
                                     <input
                                         type="text"
                                         name="title"
@@ -153,7 +153,7 @@ const NewListingForm = () => {
                                     />
                                 </label>
                                 <label>
-                                    Description
+                                    Description *
                                     <input
                                         type="text"
                                         name="description"
@@ -162,7 +162,7 @@ const NewListingForm = () => {
                                     />
                                 </label>
                                 <label>
-                                    Price
+                                    Price *
                                     <input
                                         type="text"
                                         name="price"
@@ -180,7 +180,7 @@ const NewListingForm = () => {
                                     />
                                 </label>
                                 <label>
-                                    City
+                                    City *
                                     <input
                                         type="text"
                                         name="location"
@@ -189,7 +189,7 @@ const NewListingForm = () => {
                                     />
                                 </label>
                                 <label>
-                                    Category
+                                    Category *
                                     <select
                                         className="form-dropdown"
                                         name="category"
@@ -205,7 +205,9 @@ const NewListingForm = () => {
                                         <section>
                                             <p {...getRootProps()}>
                                                 <input {...getInputProps()} />
-                                                <p style={{ color: "#0E2954" }}>Upload images - drag 'n' drop or click here to upload</p>
+                                                <p style={{ color: "#0E2954", fontWeight: "bold" }}>
+                                                    Upload images - drag 'n' drop or click here to upload *
+                                                </p>
                                             </p>
                                             {selectedImage && (
                                                 <div style={{ marginTop: '20px', marginBottom: '20px' }}>

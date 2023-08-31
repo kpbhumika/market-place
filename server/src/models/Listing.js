@@ -8,7 +8,7 @@ class Listing extends Model {
     static get jsonSchema() {
         return {
             type: "object",
-            required: ["title", "description", "price", "location"],
+            required: ["title", "description", "price", "location", "image"],
             properties: {
                 title: { type: "string", minLength: 2 },
                 description: { type: "string", minLength: 2 },
