@@ -31,8 +31,7 @@ const UserChat = () => {
             <ul className="user-chats-list">
                 <div className="grid-x grid-margin-x">
                     <div className="cell small-12 large-8">
-                    {userChatsList.length == 0 ? <h5>You don't have any chats.</h5> : (
-                        {userChatsList})}
+                    {userChatsList.length ? userChatsList : <h5>You don't have any chats.</h5>}
                     </div>
                     <div className=" chat-image cell small-12 large-4">
                         <img src="https://www.vhv.rs/dpng/d/53-530391_messages-icon-png-transparent-png.png" alt="External Image" />
