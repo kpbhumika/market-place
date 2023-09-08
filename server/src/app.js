@@ -9,6 +9,8 @@ import addMiddlewares from "./middlewares/addMiddlewares.js";
 import rootRouter from "./routes/rootRouter.js";
 import { Server } from "socket.io"
 import { createServer } from "http"
+import Message  from "../src/models/Message.js"
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -47,7 +49,9 @@ io.on("connection", (socket) => {
     console.log(`User with ID: ${socket.id} joined room: ${data}`);
   });
 
-  socket.on("send_message", (data) => {
+  socket.on("send_message", async (userId, data) => {
+    const {chatId, text , time } = data
+    await Message.query().insertAndFetch({ text, time, userId, chatId })
     socket.to(data.chatId).emit("receive_message", data);
   });
 
