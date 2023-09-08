@@ -3,8 +3,6 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import io from "socket.io-client";
 import { useParams } from "react-router-dom";
 import getMessages from "../apiClient/getMessages";
-import postMessages from "../apiClient/postMessages";
-
 
 let host="http://localhost:3000"
 if(!window.location.host.includes("localhost")){
@@ -38,8 +36,7 @@ const Message = ({ user }) => {
                     ":" +
                     new Date(Date.now()).getSeconds(),
             };
-            postMessages(messageData)
-            await socket.emit("send_message", messageData);
+            await socket.emit("send_message", user.id, messageData);
             setMessageList((list) => [...list, messageData]);
             setCurrentMessage("");
         }
