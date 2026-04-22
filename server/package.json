@@ -11,6 +11,7 @@
     "migrate:rollback": "knex --knexfile ./knexfile.cjs migrate:rollback",
     "migrate:make": "knex --knexfile ./knexfile.cjs migrate:make",
     "db:seed": "node ./bin/seed.js",
+    "db:seed:neon": "sh -c 'export DATABASE_URL=\"$(heroku config:get DATABASE_URL -a market-mingle)\" && NODE_ENV=production node ./bin/seed.js'",
     "db:test:migrate": "NODE_ENV='test' yarn run migrate:latest",
     "db:e2e:migrate": "NODE_ENV='e2e' yarn run migrate:latest",
     "test": "jest",

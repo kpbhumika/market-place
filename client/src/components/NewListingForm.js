@@ -89,23 +89,31 @@ const NewListingForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         setLoading(true)
-        const safetyCheck = await isListingSafe(newListing)
-        if (safetyCheck) {
+        setReason("")
+        try {
+            const safetyCheck = await isListingSafe(newListing)
+            if (!safetyCheck || typeof safetyCheck.isSafe !== "boolean") {
+                setReason(
+                    "Safety check could not run (service unavailable). Confirm OPENAI_API_KEY on the server and try again."
+                )
+                return
+            }
+            if (safetyCheck.isSafe) {
+                const newListingBody = new FormData()
+                newListingBody.append("title", newListing.title)
+                newListingBody.append("description", newListing.description)
+                newListingBody.append("price", newListing.price)
+                newListingBody.append("condition", newListing.condition)
+                newListingBody.append("location", newListing.location)
+                newListingBody.append("categoryId", newListing.categoryId)
+                newListingBody.append("image", newListing.image)
+                postNewListing(newListingBody)
+                clearForm(event)
+            } else {
+                setReason("Cannot add this listing. Reason : " + (safetyCheck.reason || "unspecified"))
+            }
+        } finally {
             setLoading(false)
-        }
-        if (safetyCheck.isSafe) {
-            const newListingBody = new FormData()
-            newListingBody.append("title", newListing.title)
-            newListingBody.append("description", newListing.description)
-            newListingBody.append("price", newListing.price)
-            newListingBody.append("condition", newListing.condition)
-            newListingBody.append("location", newListing.location)
-            newListingBody.append("categoryId", newListing.categoryId)
-            newListingBody.append("image", newListing.image)
-            postNewListing(newListingBody)
-            clearForm(event)
-        } else {
-            setReason("Cannot add this listing. Reason : " + safetyCheck.reason)
         }
     }
 

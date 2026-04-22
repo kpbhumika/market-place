@@ -8,6 +8,14 @@ const openai = new OpenAI({
 
 const openaiRouter = new express.Router()
 
+function parseSafetyCheckContent(content) {
+    const trimmed = (content || "").trim()
+    const fenced = trimmed.match(/```(?:json)?\s*([\s\S]*?)```/i)
+    const candidate = fenced ? fenced[1].trim() : trimmed
+    const objectMatch = candidate.match(/\{[\s\S]*\}/)
+    return JSON.parse(objectMatch ? objectMatch[0] : candidate)
+}
+
 openaiRouter.get("/", async (req, res) => {
     const description = req.query.description
     try {
@@ -24,7 +32,8 @@ openaiRouter.get("/", async (req, res) => {
                 "${description}"`
             }],
         });
-        const safetyCheck = JSON.parse(chatCompletion.choices[0].message.content)
+        const raw = chatCompletion.choices[0]?.message?.content
+        const safetyCheck = parseSafetyCheckContent(raw)
         return res.status(200).json({ safetyCheck })
     } catch (error) {
         return res.status(500).json({ errors: error })
