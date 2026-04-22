@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const path = require("path");
 const getDatabaseUrl = require("./src/config/getDatabaseUrl.cjs");
 
