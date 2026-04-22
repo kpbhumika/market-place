@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "./node_modules/.bin/webpack",
+    "build": "./node_modules/.bin/webpack && cp public/favicon.ico ../server/public/favicon.ico",
     "dev": "./node_modules/.bin/webpack-dev-server"
   },
   "license": "UNLICENSED",
