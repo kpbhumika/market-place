@@ -6,6 +6,7 @@
     "dev:debug": "./node_modules/.bin/nodemon --inspect-brk src/app.js",
     "console": "node --experimental-repl-await ./src/console.js",
     "migrate:latest": "knex --knexfile ./knexfile.cjs migrate:latest",
+    "migrate:neon": "NODE_ENV=production knex --knexfile ./knexfile.cjs migrate:latest",
     "migrate:rollback": "knex --knexfile ./knexfile.cjs migrate:rollback",
     "migrate:make": "knex --knexfile ./knexfile.cjs migrate:make",
     "db:seed": "node ./bin/seed.js",
